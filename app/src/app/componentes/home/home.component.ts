@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
   	this.mostrar = true;
   	this.tipo_cosas = true;
   	this.SeleccionDeTipoDeFoto.emit(true);
-  	this.router.navigate(['/lista']);
+  	this.router.navigate(['/cosasLindas']);
     localStorage.setItem("sala", "meGusta");
   }
 
@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
   	this.mostrar = true;
   	this.tipo_cosas = false;
   	this.SeleccionDeTipoDeFoto.emit(false);
-  	this.router.navigate(['/lista']);
+  	this.router.navigate(['/cosasFeas']);
     localStorage.setItem("sala", "noMeGusta");
   }
 

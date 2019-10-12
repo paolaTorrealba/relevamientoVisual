@@ -13,7 +13,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { environment } from '../environments/environment';
 import { LoginComponent } from './componentes/login/login.component';  
 import { HomeComponent } from './componentes/home/home.component';  
-import { ListComponent } from './componentes/list/list.component';  
+import { CosasLindasComponent } from './componentes/cosas-lindas/cosas-lindas.component';  
+import { CosasFeasComponent } from './componentes/cosas-feas/cosas-feas.component';  
+
 import { GraficaComponent } from './componentes/grafica/grafica.component';  
 
 import { AngularFireModule } from '@angular/fire'; 
@@ -41,7 +43,8 @@ generar splash e icon: https://blog.ng-classroom.com/blog/tips/preparando-iconos
     LoginComponent,
     HomeComponent,
     SplashComponent,
-    ListComponent,
+    CosasLindasComponent,
+    CosasFeasComponent,
     GraficaComponent
   ],
   entryComponents: [],

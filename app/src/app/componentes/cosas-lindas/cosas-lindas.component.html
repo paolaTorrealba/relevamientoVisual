@@ -1,12 +1,12 @@
 <div class="grid-container">
-
   <div class="flex-container">
       <!-- <button ion-button outline color="red" class="sacarFoto" (click)="SacarFoto()">Sacar foto</button> -->
-      <button class="btn-list" (click)="obtenerFotos()">
+      <button class="btn-list" (click)="abrirCamara()">
         <span class="icon">
           <img class="img-camara" src="./assets/images/camara-de-fotos.svg" alt="">  
         </span>AbrirCamara
       </button>
+      <button class="btn-list "  (click)="obtenerFotos()">obtenerFotos</button>  
       <button class="btn-list "  (click)="guardarFoto()">GuardarFoto</button>  
       <button class="btn-list ocultar" id="btn-grafico">
         <span class="icon">
@@ -14,7 +14,9 @@
         </span>
       </button>  
   </div>
-
+  <ion-thumbnail item-start>
+    <img src={{this.foto}}>
+  </ion-thumbnail>
   <div class="scroll">
     <ul class="ul-photo">
       <div class="spinner" [ngClass]="{'ocultar':!spinner}">
@@ -38,7 +40,30 @@
 
 </div>
       
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="schedule">
+      <ion-icon name="calendar"></ion-icon>
+      <ion-label>Inicio</ion-label>
+      <ion-badge>6</ion-badge>
+    </ion-tab-button>
 
+    <ion-tab-button (click)="irACosasFeas()">
+      <ion-icon name="contacts"></ion-icon>
+      <ion-label>Cosas Feas</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="map">
+      <ion-icon name="map"></ion-icon>
+      <ion-label>Mis Fotos</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="about">
+      <ion-icon name="information-circle"></ion-icon>
+      <ion-label>Salir</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
   <router-outlet></router-outlet>
 
 

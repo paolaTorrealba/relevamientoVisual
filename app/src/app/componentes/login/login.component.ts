@@ -63,8 +63,14 @@ export class LoginComponent implements OnInit {
   rellenarDatos(){
     this.formulario.patchValue({
       email: "tester@gmail.com",
-      password: "555555"
+      clave: "555555",
+
     });
+    console.log("this.formulario:", this.formulario)
+    let usuarioTest= new Usuario();
+    usuarioTest.email="tester@gmail.com";
+    localStorage.setItem("usuario", JSON.stringify(usuarioTest));
+
   }
 
   

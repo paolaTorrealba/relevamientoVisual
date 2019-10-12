@@ -4,15 +4,20 @@ import { CamaraService } from '../../servicios/camara.service';
 import * as firebase from "firebase";
 import { ImagePicker, ImagePickerOptions } from '@ionic-native/image-picker';
 import { AuthService } from 'src/app/servicios/auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
-  selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss'],
+  selector: 'app-cosas-lindas',
+  templateUrl: './cosas-lindas.component.html',
+  styleUrls: ['./cosas-lindas.component.scss'],
 })
-export class ListComponent implements OnInit {
+export class CosasLindasComponent implements OnInit {
+  @Output() public SeleccionDeTipoDeFoto: EventEmitter<any> = new EventEmitter<any>();
+  mostrar: boolean;
+  tipo_cosas: boolean;
 
+  
   public nombreArchivo = '';
   public URLPublica = '';
 
@@ -27,28 +32,16 @@ export class ListComponent implements OnInit {
 
 
 
-  constructor(private  data:  AuthService,private camera: Camera, private camService: CamaraService) { 
+  constructor(public router: Router,
+    private  data:  AuthService,
+    private camera: Camera, 
+    private camService: CamaraService) { 
 
     console.log("parseo el usuario");
-
-    // this.sala = JSON.stringify(localStorage.getItem('sala'));
-
     this.sala = localStorage.getItem("sala");
     console.log(this.sala);
-
-    // this.usuario=localStorage.getItem("email");
     this.usuario = JSON.stringify(localStorage.getItem('usuarios'));
-    console.log(this.usuario);
-
-    // if(this.sala == 'meGusta')
-    // {
-    //   this.color_sala = true;
-    // }
-    // else{
-    //   this.color_sala = false;
-    // }
-
-   
+    console.log(this.usuario);   
   }
 
   ngOnInit() {
@@ -58,23 +51,15 @@ export class ListComponent implements OnInit {
       'correo': 'admin@gmail.com',
       'perfil': 'admin',
       'sexo': 'femenino'
-    });*/
-
-    // this.obtenerFotos();
-
-    // localStorage.setItem("sala", this.sala);
-    //console.log(localStorage.getItem('sala'));
-    // console.log("ObtenerFotos: "+this.sala);
+    });*/  
 
   }
 
   async abrirCamara() {
-
     let date = new Date();
     let imageName = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}-${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}-${date.getMilliseconds()}`;
 
     try {
-
       let options: CameraOptions = {
         quality: 50,
         targetHeight: 600,
@@ -96,45 +81,50 @@ export class ListComponent implements OnInit {
           // let baseRef = this.firebase.database().ref(this.sala);
           // baseRef.push({ "email": this.usuario.email, "votos": 0 });
         });
-      });
-      // this.obtenerFotos();
-    
+      });    
       
     } catch (error) {
-
       alert(error);
     }
   }
 
   
  public  guardarFoto(){
-  console.log("entre:");
+  this.obtenerFotos();
+  console.log("entre: ============");
   this.usuario = JSON.parse(localStorage.getItem("usuario"));
   console.log("this.usuario.email:",this.usuario.email);
+  console.log("this.fotosMeGusta:",this.fotosMeGusta);
+  console.log("this.fotosMeGusta.length:",this.fotosMeGusta.length);
+  console.log("this.foto:",this.foto);
+  if (this.foto!=""){
     let data= {
       "email":this.usuario.email,
       "img":this.foto,
       "id": this.fotosMeGusta.length+1,
       "votos":"0"
     }
+    console.log("data:",data);
     this.data.guardarFotoMeGusta(data).then(res =>{  
     }).catch(error => {
-      console.log(error,"error al guardar el producto");
-   
-    });
+         console.log(error,"error al guardar el producto");   
+       });
+  }  else {
+    console.log("no hay foto nueva");
+  }
 
   }
 
   obtenerFotos() {
     console.log("obtener fotos:");
     
-    this.fotosMeGusta
+    this.fotosMeGusta;
     this.data.getListaMeGusta('megusta').subscribe(lista => {
         this.fotosMeGusta=lista;
         console.log("fotos:",this.fotosMeGusta);
       });
 
-   
+   console.log("termino");
 
 
 
@@ -241,6 +231,12 @@ export class ListComponent implements OnInit {
   }
 
 
-
+  irACosasFeas(){
+  	this.mostrar = true;
+  	this.tipo_cosas = false;
+  	this.SeleccionDeTipoDeFoto.emit(false);
+  	this.router.navigate(['/cosasFeas']);
+    localStorage.setItem("sala", "noMeGusta");
+  }
 
 }
