@@ -1,0 +1,44 @@
+<div class="grid-container">
+
+  <div class="flex-container">
+      <!-- <button ion-button outline color="red" class="sacarFoto" (click)="SacarFoto()">Sacar foto</button> -->
+      <button class="btn-list" (click)="obtenerFotos()">
+        <span class="icon">
+          <img class="img-camara" src="./assets/images/camara-de-fotos.svg" alt="">  
+        </span>AbrirCamara
+      </button>
+      <button class="btn-list "  (click)="guardarFoto()">GuardarFoto</button>  
+      <button class="btn-list ocultar" id="btn-grafico">
+        <span class="icon">
+          <img class="img-camara" src="./assets/images/grafico.svg" routerLink="grafico" alt="">  
+        </span>
+      </button>  
+  </div>
+
+  <div class="scroll">
+    <ul class="ul-photo">
+      <div class="spinner" [ngClass]="{'ocultar':!spinner}">
+      </div>
+      <li class="img-list" *ngFor="let item of fotosMeGusta">
+          <ion-thumbnail item-start>
+              <img src={{item.img}}>
+            </ion-thumbnail>
+            <!-- <img src={{item.img}} alt="foto" class="img-thumbnail photo"> -->
+
+            <div class="contenido">
+              
+              <p class="text-right">{{item.email}}</p>
+              <p class="text-center">Votos: {{item.votos}}</p>
+              <button type="button" (click)="votar(item)" class="btn btn-primary btn-voto btn-block">Votar</button>
+
+            </div>
+      </li>
+    </ul>
+  </div>
+
+</div>
+      
+
+  <router-outlet></router-outlet>
+
+

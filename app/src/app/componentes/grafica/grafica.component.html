@@ -1,0 +1,14 @@
+<div style="text-align:center">
+  <h1>
+    Bienvenido a los Graficos!
+  </h1>
+  <div class="grafico">
+  	<div class="graf" [ngClass]="{ocultar: !tipo}">
+  		<canvas  id="pieChart"></canvas>
+  	</div>
+  	<div class="graf" [ngClass]="{ocultar: tipo}">
+  		<canvas id="barChart"></canvas>
+  	</div>
+  	
+  </div>
+</div>

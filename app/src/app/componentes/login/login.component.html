@@ -1,0 +1,46 @@
+<div id="" class="card">
+    <div id="card-content">
+      <div id="card-title">
+        <h3>Ingreso</h3>
+        <div class="underline-title underline-login"></div>
+      </div>
+
+      <form class="form" [formGroup]="formulario">
+          <label for="user-email" style="padding-top:13px">
+              &nbsp;Correo Electronico
+          </label>
+          <input formControlName="email" class="form-content" type="email" name="email" required />
+          
+          <div class="form-border"></div>
+          <div class="alerta" *ngIf="!formulario.controls['email'].valid && formulario.controls['email'].touched">
+            Este campo es requerido
+          </div>
+          
+          <label for="user-password" style="padding-top:22px">&nbsp;Clave
+            </label>
+          <input formControlName="password" class="form-content" type="password" name="password" required />
+          <div class="form-border"></div>
+          <div class="alerta" *ngIf="!formulario.controls['password'].valid && formulario.controls['password'].touched">
+            Este campo es requerido
+          </div>
+
+          <a href="#">
+            <legend id="forgot-pass">¿Olvidó la contraseña?</legend>
+          </a>
+
+          <input id="submit-btn" [disabled]="!formulario.valid" (click)="onSubmitLogin(formulario.value)" type="submit" value="ACCEDER" /> 
+
+          <button id="relleno-btn" (click)="rellenarDatos()">Rellenar</button>
+          
+          <a href="#" id="signup">¿No tenés cuenta todavia?</a>
+          <!-- div *ngIf="!error">
+            <p id="mesajeError">Error</p>
+          </div-->
+          
+      </form>
+    </div>
+  </div>
+
+  <router-outlet></router-outlet>
+
+  
