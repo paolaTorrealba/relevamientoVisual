@@ -17,7 +17,7 @@ export class CosasLindasComponent implements OnInit {
   mostrar: boolean;
   tipo_cosas: boolean;
 
-  
+
   public nombreArchivo = '';
   public URLPublica = '';
 
@@ -40,7 +40,7 @@ export class CosasLindasComponent implements OnInit {
     console.log("parseo el usuario");
     this.sala = localStorage.getItem("sala");
     console.log(this.sala);
-    this.usuario = JSON.stringify(localStorage.getItem('usuarios'));
+    this.usuario = JSON.stringify(localStorage.getItem('usuario'));
     console.log(this.usuario);   
   }
 
@@ -237,6 +237,18 @@ export class CosasLindasComponent implements OnInit {
   	this.SeleccionDeTipoDeFoto.emit(false);
   	this.router.navigate(['/cosasFeas']);
     localStorage.setItem("sala", "noMeGusta");
+  }
+
+  irAInicio(){  
+    this.router.navigate(['home']); 
+  }
+
+  irAMisFotos(){  
+    this.router.navigate(['misFotos']); 
+  }
+
+  salir(){  
+    this.router.navigate(['login']); 
   }
 
 }

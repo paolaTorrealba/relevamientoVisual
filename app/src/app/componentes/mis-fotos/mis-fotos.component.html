@@ -1,0 +1,40 @@
+<ion-row>
+  <ion-col align-self-start>
+    ion-col [start]
+  </ion-col>
+  <ion-col align-self-center>
+    ion-col [center]
+  </ion-col>
+  <ion-col align-self-end>
+    ion-col [end]
+  </ion-col>
+  <ion-col>
+    ion-col
+    <br>#
+    <br>#
+  </ion-col>
+</ion-row>
+
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button (click)="irAInicio()">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>Inicio</ion-label>
+     </ion-tab-button>
+
+    <ion-tab-button (click)="irACosasLindas()">
+      <ion-icon name="thumbs-up"></ion-icon>
+      <ion-label>Cosas Lindas</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button (click)="irACosasFeas()">
+      <ion-icon name="thumbs-down"></ion-icon>
+      <ion-label>Cosas Feas</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button (click)="salir()">
+      <ion-icon name="log-out"></ion-icon>
+      <ion-label>Salir</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

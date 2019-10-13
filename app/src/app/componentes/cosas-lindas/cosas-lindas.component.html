@@ -1,6 +1,5 @@
 <div class="grid-container">
   <div class="flex-container">
-      <!-- <button ion-button outline color="red" class="sacarFoto" (click)="SacarFoto()">Sacar foto</button> -->
       <button class="btn-list" (click)="abrirCamara()">
         <span class="icon">
           <img class="img-camara" src="./assets/images/camara-de-fotos.svg" alt="">  
@@ -37,33 +36,33 @@
       </li>
     </ul>
   </div>
-
+  
 </div>
-      
+
+<!--       
 <ion-tabs>
   <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="schedule">
-      <ion-icon name="calendar"></ion-icon>
+    <ion-tab-button (click)="irAInicio()">
+      <ion-icon name="home"></ion-icon>
       <ion-label>Inicio</ion-label>
-      <ion-badge>6</ion-badge>
     </ion-tab-button>
 
     <ion-tab-button (click)="irACosasFeas()">
-      <ion-icon name="contacts"></ion-icon>
+      <ion-icon name="thumbs-down"></ion-icon>
       <ion-label>Cosas Feas</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="map">
-      <ion-icon name="map"></ion-icon>
+    <ion-tab-button (click)="irAMisFotos()">
+      <ion-icon name="images"></ion-icon>
       <ion-label>Mis Fotos</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="about">
-      <ion-icon name="information-circle"></ion-icon>
+    <ion-tab-button (click)="salir()">
+      <ion-icon name="log-out"></ion-icon>
       <ion-label>Salir</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
-</ion-tabs>
-  <router-outlet></router-outlet>
+</ion-tabs> -->
+
 
 

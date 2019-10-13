@@ -2,11 +2,11 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-cosas-feas',
-  templateUrl: './cosas-feas.component.html',
-  styleUrls: ['./cosas-feas.component.scss'],
+  selector: 'app-mis-fotos',
+  templateUrl: './mis-fotos.component.html',
+  styleUrls: ['./mis-fotos.component.scss'],
 })
-export class CosasFeasComponent implements OnInit {
+export class MisFotosComponent implements OnInit {
   @Output() public SeleccionDeTipoDeFoto: EventEmitter<any> = new EventEmitter<any>();
   mostrar: boolean;
   tipo_cosas: boolean;
@@ -14,6 +14,14 @@ export class CosasFeasComponent implements OnInit {
   constructor(public router: Router) { }
 
   ngOnInit() {}
+
+  irACosasFeas(){
+  	this.mostrar = true;
+  	this.tipo_cosas = false;
+  	this.SeleccionDeTipoDeFoto.emit(false);
+  	this.router.navigate(['/cosasFeas']);
+    localStorage.setItem("sala", "noMeGusta");
+  }
 
   irACosasLindas(){
   	this.mostrar = true;
@@ -25,12 +33,9 @@ export class CosasFeasComponent implements OnInit {
   irAInicio(){  
     this.router.navigate(['home']); 
   }
-  irAMisFotos(){  
-    console.log("voy a is fotos")
-    this.router.navigate(['misFotos']);     
-  }
 
   salir(){  
     this.router.navigate(['login']); 
   }
+  
 }
