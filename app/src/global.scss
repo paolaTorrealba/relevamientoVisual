@@ -65,7 +65,7 @@ label {
   background: -webkit-linear-gradient(right, $verde2, $verde1);
   border: none;
   border-radius: 21px;
-  box-shadow: 0px 1px 8px #24c64f;
+  box-shadow: 0px 1px 8px #b823dd;
   cursor: pointer;
   color: white;
   font-family: $letra_semibold;
@@ -76,7 +76,7 @@ label {
   width: 153px;
 }
 #submit-btn:hover {
-  box-shadow: 0px 1px 18px #24c64f;
+  box-shadow: 0px 1px 18px #c624be;
 }
 #submit-btn:disabled{
   background: #ddd;
@@ -89,7 +89,7 @@ label {
   flex-direction: column;
 }
 .form-border {
-  background: -webkit-linear-gradient(right, $verde2, #2ec06f);
+  background: -webkit-linear-gradient(right, $verde2, #c02ead);
   height: 1px;
   width: 100%;
 }
@@ -100,7 +100,7 @@ label {
   padding-top: 14px;
 }
 .underline-title {
-  background: -webkit-linear-gradient(right, $verde2, #2ec06f);
+  background: -webkit-linear-gradient(right, $verde2, #c02eb9);
   height: 2px;
   margin: -1.1rem auto 0 auto;
 }
@@ -136,7 +136,7 @@ label {
 .btn-home{
   border: none;
   border-radius: 21px;
-  box-shadow: 0px 1px 8px #24c64f;
+  box-shadow: 0px 1px 8px #c624b8;
   cursor: pointer;
   color: white;
   font-family: $letra_semibold;
@@ -180,7 +180,7 @@ label {
 }
 
 button:hover{
-  box-shadow: 0px 1px 18px #24c64f;
+  box-shadow: 0px 1px 18px #010036;
 }
 
 //SCREEN
@@ -199,7 +199,7 @@ button:hover{
 .btn-list{
   border: none;
   border-radius: 21px;
-  box-shadow: 0px 1px 8px #24c64f;
+  box-shadow: 0px 1px 8px #c624ab;
   cursor: pointer;
   color: white;
   font-family: $letra_semibold;

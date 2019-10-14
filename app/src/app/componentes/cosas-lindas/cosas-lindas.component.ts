@@ -25,7 +25,7 @@ export class CosasLindasComponent implements OnInit {
   public usuario;
   public sala;
   public fotos = [];
-  public foto: string = "";
+  public foto: string = "./assets/images/sinfoto.png";
   public fotosMeGusta=new Array();
   public color_sala;
   spinner: boolean = true;
@@ -56,6 +56,7 @@ export class CosasLindasComponent implements OnInit {
   }
 
   async abrirCamara() {
+    // this.foto="./assets/images/no.png";
     let date = new Date();
     let imageName = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}-${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}-${date.getMilliseconds()}`;
 
