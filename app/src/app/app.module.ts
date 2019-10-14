@@ -29,6 +29,8 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 //import { HttpClientModule } from '@angular/common/http'; 
 //import { HttpModule, Http } from '@angular/http';
 import { AngularFirestore, AngularFirestoreModule } from "@angular/fire/firestore"; 
+import { CosasLindasListComponent } from './componentes/cosas-lindas-list/cosas-lindas-list.component';
+import { CosasFeasListComponent } from './componentes/cosas-feas-list/cosas-feas-list.component';
 
 /*
 
@@ -46,6 +48,8 @@ generar splash e icon: https://blog.ng-classroom.com/blog/tips/preparando-iconos
     CosasLindasComponent,
     CosasFeasComponent,
     MisFotosComponent,
+    CosasFeasListComponent,
+    CosasLindasListComponent,
     GraficaComponent
   ],
   entryComponents: [],

@@ -21,8 +21,14 @@ export class CosasFeasComponent implements OnInit {
   public sala;
   public fotos = [];
   public foto: string = "./assets/images/sinfoto.png";
-  public fotosNoMeGusta=new Array(); 
+  public fotosMias= new Array();
+  public fotosFeas= new Array();
+  public fotosLindas= new Array();
+
   spinner: boolean = true;
+  public email:string;
+
+
 
   constructor(public router: Router,
     private  data:  AuthService,
@@ -30,7 +36,13 @@ export class CosasFeasComponent implements OnInit {
     private camService: CamaraService) {  
 
       this.sala = localStorage.getItem("sala");      
-      this.usuario = JSON.stringify(localStorage.getItem('usuario'));  
+      this.usuario = JSON.stringify(localStorage.getItem('usuario'));
+      this.email = localStorage.getItem("email");
+      console.log("this.usuario en constr",this.usuario);  
+      console.log("email en constr",this.email);  
+      console.log("sala en constr",this.sala); 
+      this.obtenerFotosMias();
+      console.log("================");
     }
 
   ngOnInit() {}
@@ -65,13 +77,13 @@ export class CosasFeasComponent implements OnInit {
   }
 
   public  guardarFoto(){
-    this.obtenerFotos();    
+    // this.obtenerFotos();    
     this.usuario = JSON.parse(localStorage.getItem("usuario"));    
     if (this.foto!=""){
       let data= {
         "email":this.usuario.email,
         "img":this.foto,
-        "id": this.fotosNoMeGusta.length+1,
+        "id": this.fotosFeas.length+1,
         "votos":"0"
       }     
       this.data.guardarFotoNoMeGusta(data).then(res =>{  
@@ -84,12 +96,66 @@ export class CosasFeasComponent implements OnInit {
   
  }
 
- obtenerFotos() {
-    this.fotosNoMeGusta;
-    this.data.getListaNoMeGusta('nomegusta').subscribe(lista => {
-        this.fotosNoMeGusta=lista;      
-      });
+ obtenerFotosMias() {
+   console.log("las fotos antes :");
+
+   console.log("feas: ",this.fotosFeas);
+   console.log("lindas: ",this.fotosLindas);
+   console.log("mias: ",this.fotosMias);
+
+    this.obtenerFotosFeas();
+    this.obtenerFotosLindas();
+    console.log("las fotos despues:");
+    console.log("feas: ",this.fotosFeas);
+    console.log("lindas: ",this.fotosLindas);
+    console.log("mias: ",this.fotosMias);
+
+    // this.usuario = JSON.stringify(localStorage.getItem('usuario'));  
+    console.log("this.usuario",this.usuario);
+    console.log("email", this.email)
+
+    for(let i=0;i<this.fotosFeas.length;i++){ 
+      console.log("el mail de feas: ", this.fotosFeas[i].email)            
+      if(this.fotosFeas[i].email === this.email) {   
+        console.log("es true");  
+        console.log("this.fotosFeas[i] ",this.fotosFeas[i]);  
+        this.fotosMias.push(this.fotosFeas[i]);
+      } 
+    }  
+    for(let i=0;i<this.fotosLindas.length;i++){ 
+      console.log("el mail de lindas: ", this.fotosLindas[i].email)          
+      if(this.fotosLindas[i].email === this.email) {     
+        this.fotosMias.push(this.fotosLindas[i]);
+      } 
+    }  
+    console.log("finally")
+    console.log("feas: ",this.fotosFeas);
+    console.log("lindas: ",this.fotosLindas);
+    console.log("mias: ",this.fotosMias);
+ } 
+
+limpiarListas(){
+  console.log("limpiar");
+  this.fotosMias= new Array();
+  this.fotosFeas= new Array();
+  this.fotosLindas= new Array();
 }
+
+ obtenerFotosFeas() {
+  this.data.getListaNoMeGusta('nomegusta').subscribe(lista => {
+      this.fotosFeas=lista;      
+  });
+
+ console.log(this.fotosFeas);
+ 
+} 
+
+obtenerFotosLindas() {
+  this.data.getListaMeGusta('megusta').subscribe(lista => {
+      this.fotosLindas=lista;      
+    });
+    console.log(this.fotosLindas);
+} 
   
 
 
@@ -177,4 +243,28 @@ export class CosasFeasComponent implements OnInit {
   	this.router.navigate(['/cosasLindas']);
     localStorage.setItem("sala", "meGusta");
   }
+
+  irACosasFeasList(){
+  	this.mostrar = true;
+  	this.tipo_cosas = false;
+    this.SeleccionDeTipoDeFoto.emit(false);  
+  	this.router.navigate(['/cosasFeasList']);
+    localStorage.setItem("sala", "noMeGusta");
+  }
+  irACosasLindasList(){
+  	this.mostrar = true;
+  	this.tipo_cosas = false;
+    this.SeleccionDeTipoDeFoto.emit(true);  
+  	this.router.navigate(['/cosasLindasList']);
+    localStorage.setItem("sala", "meGusta");
+  }
+   irAFotosMiasList(){
+  	this.mostrar = true;
+  	this.tipo_cosas = false;
+    this.SeleccionDeTipoDeFoto.emit(true);  
+  	this.router.navigate(['/misFotos']);
+    localStorage.setItem("sala", "mias");
+  }
+  
+
 }

@@ -6,6 +6,8 @@ import { CosasLindasComponent } from './componentes/cosas-lindas/cosas-lindas.co
 import { CosasFeasComponent } from './componentes/cosas-feas/cosas-feas.component';
 import { GraficaComponent } from './componentes/grafica/grafica.component';
 import { MisFotosComponent } from './componentes/mis-fotos/mis-fotos.component';  
+import { CosasLindasListComponent } from './componentes/cosas-lindas-list/cosas-lindas-list.component';
+import { CosasFeasListComponent } from './componentes/cosas-feas-list/cosas-feas-list.component';
 
 
 const routes: Routes = [
@@ -15,6 +17,8 @@ const routes: Routes = [
   //{path: '**', redirectTo: 'login', pathMatch: 'full'},
   {path: 'cosasLindas', component: CosasLindasComponent },
   {path: 'cosasFeas', component: CosasFeasComponent },
+  {path: 'cosasFeasList', component: CosasFeasListComponent },
+  {path: 'cosasLindasList', component: CosasLindasListComponent },
   {path: 'misFotos', component: MisFotosComponent },
   {path: 'home/grafico', component: GraficaComponent },
   

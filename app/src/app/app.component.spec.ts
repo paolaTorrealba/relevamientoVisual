@@ -54,6 +54,8 @@ describe('AppComponent', () => {
     expect(menuItems[1].textContent).toContain('CosasLindas');
     expect(menuItems[2].textContent).toContain('CosasFeas');
     expect(menuItems[3].textContent).toContain('MisFotos');
+    expect(menuItems[4].textContent).toContain('CosasLindasList');
+    expect(menuItems[5].textContent).toContain('CosasFeasList');
   });
 
   it('should have urls', async () => {
@@ -66,6 +68,9 @@ describe('AppComponent', () => {
     expect(menuItems[1].getAttribute('ng-reflect-router-link')).toEqual('/cosasLindas');
     expect(menuItems[2].getAttribute('ng-reflect-router-link')).toEqual('/cosasFeas');
     expect(menuItems[3].getAttribute('ng-reflect-router-link')).toEqual('/misFotos');
+    expect(menuItems[4].getAttribute('ng-reflect-router-link')).toEqual('/cosasLindasList');
+    expect(menuItems[5].getAttribute('ng-reflect-router-link')).toEqual('/cosasFeasList');
   });
+
 
 });

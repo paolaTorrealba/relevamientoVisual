@@ -40,14 +40,13 @@ export class LoginComponent implements OnInit {
           this.usuarios=lista;
           console.log(this.usuarios);
           let flag = false;
-          for(let i=0;i<this.usuarios.length;i++)
-          {
-            console.log()
+          for(let i=0;i<this.usuarios.length;i++){           
             if(this.usuarios[i].email == formValues.email) {
               // if(this.usuarios[i].perfil != 'admin' ){
               //   flag = true;
                 let usuario = this.usuarios[i];
                 localStorage.setItem("usuario", JSON.stringify(usuario));
+                localStorage.setItem("email", usuario.email);
                 // this.mostrarSpiner=false;
                 // this.navCtrl.setRoot(PrincipalPage, {usuario : res});
                 this.router.navigate(['home']);

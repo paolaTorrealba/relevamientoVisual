@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/servicios/auth.service';
+import * as firebase from "firebase";
 
 @Component({
   selector: 'app-cosas-feas-list',
@@ -6,9 +9,39 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cosas-feas-list.component.scss'],
 })
 export class CosasFeasListComponent implements OnInit {
+  @Output() public SeleccionDeTipoDeFoto: EventEmitter<any> = new EventEmitter<any>();
+  mostrar: boolean;
+  tipo_cosas: boolean;
 
-  constructor() { }
+  public firebase = firebase;
+  public usuario;
+  public sala;
+  public fotos = [];
+  public foto: string = "./assets/images/sinfoto.png";
+  public fotosMias= new Array();
+  public fotosFeas= new Array();
+  public fotosLindas= new Array();
+
+  spinner: boolean = true;
+  public email:string;
+
+
+
+  constructor(public router: Router, private  data:  AuthService ) {  
+
+      this.sala = localStorage.getItem("sala");      
+      this.usuario = JSON.stringify(localStorage.getItem('usuario'));
+      this.email = localStorage.getItem("email");  
+      this.obtenerFotosFeas();
+
+    }
 
   ngOnInit() {}
+
+  obtenerFotosFeas() {
+    this.data.getListaNoMeGusta('nomegusta').subscribe(lista => {
+        this.fotosFeas=lista;      
+    });
+  }
 
 }
