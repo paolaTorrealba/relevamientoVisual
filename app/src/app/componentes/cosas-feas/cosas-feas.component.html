@@ -1,9 +1,30 @@
-<ion-grid>
-  <ion-row>
-    <ion-col>
-      Fotos
-    </ion-col>   
-  </ion-row>
+<div class="grid-container">
+  <div class="flex-container">
+      <button class="btn-list" (click)="abrirCamara()">
+        <span class="icon">
+          <img class="img-camara" src="./assets/images/camara-de-fotos.svg" alt="">  
+        </span>
+      </button> 
+  </div>
+  <ion-card>
+      <button style="background-color: transparent;    margin-top: inherit;" (click)="abrirCamara()">
+           <img src={{this.foto}}>
+      </button>
+    <ion-card-content>
+      <ion-card-title style="margin-left: 45%;">
+       Tu Foto
+       </ion-card-title>
+      <p style="margin-left: 30%;  color: #000000ad;">
+        Esta foto es acerca de algo que no te ha gustado
+      </p>
+    </ion-card-content>
+  </ion-card>
 
-  </ion-grid>
+  <div>   
+    <button class="btn-list-ok "  (click)="guardarFoto()" >Guardar</button>  
+    <button class="btn-list-cancel2 "  (click)="irAInicio()" >Cancelar</button>  
+  </div>  
+</div> 
+
+
 

@@ -25,6 +25,13 @@ export interface megusta {
   votos: string;
  }
 
+ export interface nomegusta {
+  id: string;
+  email: string;
+  img: string;
+  votos: string;
+ }
+ 
 
 @Injectable({
   providedIn: 'root'
@@ -92,7 +99,18 @@ export class AuthService {
     return this.firestore.collection('megusta').add(data);
   }
 
-
+  public getListaNoMeGusta(tipo:string) {  
+      return this.firestore.collection(tipo).snapshotChanges().pipe(map(rooms => {
+        return rooms.map(a =>{
+          const data = a.payload.doc.data() as nomegusta;
+          return data;
+        })
+      }));
+    }
+  
+    guardarFotoNoMeGusta(data) {
+      return this.firestore.collection('nomegusta').add(data);
+    }
 
   guardarUsuario(){
     console.log("guardar usuario de auth")

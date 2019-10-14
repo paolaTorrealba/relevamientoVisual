@@ -16,21 +16,14 @@ export class CosasLindasComponent implements OnInit {
   @Output() public SeleccionDeTipoDeFoto: EventEmitter<any> = new EventEmitter<any>();
   mostrar: boolean;
   tipo_cosas: boolean;
-
-
-  public nombreArchivo = '';
-  public URLPublica = '';
-
+  
   public firebase = firebase;
   public usuario;
   public sala;
   public fotos = [];
   public foto: string = "./assets/images/sinfoto.png";
-  public fotosMeGusta=new Array();
-  public color_sala;
+  public fotosMeGusta=new Array(); 
   spinner: boolean = true;
-
-
 
   constructor(public router: Router,
     private  data:  AuthService,
