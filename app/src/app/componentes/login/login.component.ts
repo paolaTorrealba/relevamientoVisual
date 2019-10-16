@@ -59,19 +59,44 @@ export class LoginComponent implements OnInit {
       });
   }
 
-  rellenarDatos(){
-    this.formulario.patchValue({
-      email: "tester@gmail.com",
-      clave: "555555",
+  rellenarAdmin(){
+    this.formulario.patchValue({email: "admin@admin.com",clave: "111111"});
+    console.log("this.formulario:", this.formulario)
+    let usuarioAlternativo= new Usuario();
+    usuarioAlternativo.email="admin@admin.com";
+    localStorage.setItem("usuario", JSON.stringify(usuarioAlternativo));
+  }
 
-    });
+  rellenarInvitado(){
+    this.formulario.patchValue({email: "invitado@invitado.com",clave: "222222"});
     console.log("this.formulario:", this.formulario)
     let usuarioTest= new Usuario();
     usuarioTest.email="tester@gmail.com";
     localStorage.setItem("usuario", JSON.stringify(usuarioTest));
-
+  }
+ 
+  rellenarUsuario(){
+    this.formulario.patchValue({email: "usuario@usuario.com",clave: "333333"});
+    console.log("this.formulario:", this.formulario)
+    let usuarioTest= new Usuario();
+    usuarioTest.email="usuario@usuario.com";
+    localStorage.setItem("usuario", JSON.stringify(usuarioTest));
+  }
+  rellenarAnonimo(){
+    this.formulario.patchValue({ email: "anonimo@anonimo.com",clave: "444444" });
+    console.log("this.formulario:", this.formulario)
+    let usuarioAlternativo= new Usuario();
+    usuarioAlternativo.email="anonimo@anonimo.com";
+    localStorage.setItem("usuario", JSON.stringify(usuarioAlternativo));
   }
 
+  rellenarTester(){
+    this.formulario.patchValue({email: "tester@tester.com",clave: "555555"});
+    console.log("this.formulario:", this.formulario)
+    let usuarioTest= new Usuario();
+    usuarioTest.email="tester@tester.com";
+    localStorage.setItem("usuario", JSON.stringify(usuarioTest));
+  }
   
 
 

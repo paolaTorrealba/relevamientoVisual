@@ -29,10 +29,18 @@
           </a>
 
           <input id="submit-btn" [disabled]="!formulario.valid" (click)="onSubmitLogin(formulario.value)" type="submit" value="ACCEDER" /> 
-
-          <button id="relleno-btn" (click)="rellenarDatos()">Rellenar</button>
+<div class="row">
+    <button id="relleno-btn" (click)="rellenarAdmin()">Admin</button>
+    <button id="relleno-btn" (click)="rellenarInvitado()">Inv</button>
+    <button id="relleno-btn" (click)="rellenarUsuario()">Usu</button>
+    <button id="relleno-btn" (click)="rellenarAnonimo()">Anon</button>
+    <button id="relleno-btn" (click)="rellenarTester()">Test</button>
+</div>
+         
           
           <a href="#" id="signup">¿No tenés cuenta todavia?</a>
+
+        
           <!-- div *ngIf="!error">
             <p id="mesajeError">Error</p>
           </div-->
