@@ -21,15 +21,17 @@
   </ion-card>
 
   <div>   
-    <button class="btn-list-ok "  (click)="guardarFoto()" >Guardar</button>  
-    <button class="btn-list-cancel2 "  (click)="irAInicio()" >Cancelar</button>  
+    <button class="btn-list-ok" (click)="guardarFoto()"><ion-icon md="md-checkmark-circle"></ion-icon></button>  
+    <button class="btn-list-cancel2" (click)="irAInicio()"><ion-icon md="md-close-circle"></ion-icon></button>  
   </div> 
-  <div>   
-    <button class="btn-list-ok "  (click)="irACosasFeasList()" >Cosas Feas</button>  
-    <button class="btn-list-cancel2 "  (click)="irAFotosMiasList()" >MisFotos</button>  
-    <button class="btn-list-cancel2 "  (click)="irACosasLindasList()" >cosas lindas</button>  
+  <div>  
+    <button class="btn-list-menu "  (click)="irAInicio()"        ><ion-icon name="home"></ion-icon></button>  
+    <button class="btn-list-menu "  (click)="irACosasFeasList()" ><ion-icon name="sad"></ion-icon></button>  
+    <button class="btn-list-menu "  (click)="irACosasLindasList()" ><ion-icon name="happy"></ion-icon></button> 
+    <button class="btn-list-menu "  (click)="irAFotosMiasList()" ><ion-icon name="person"></ion-icon></button>
   </div>  
 </div> 
+
 
 
 
