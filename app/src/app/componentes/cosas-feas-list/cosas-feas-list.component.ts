@@ -44,4 +44,46 @@ export class CosasFeasListComponent implements OnInit {
     });
   }
 
+  irAInicio(){  
+    this.router.navigate(['home']); 
+  }
+
+  irAMisFotos(){  
+    this.router.navigate(['misFotos']); 
+  }
+
+  salir(){  
+    this.router.navigate(['login']); 
+  }
+
+  irACosasLindas(){
+  	this.mostrar = true;
+  	this.tipo_cosas = false;
+  	this.SeleccionDeTipoDeFoto.emit(false);
+  	this.router.navigate(['/cosasLindas']);
+    localStorage.setItem("sala", "meGusta");
+  }
+
+  irACosasFeasList(){
+  	this.mostrar = true;
+  	this.tipo_cosas = false;
+    this.SeleccionDeTipoDeFoto.emit(false);  
+  	this.router.navigate(['/cosasFeasList']);
+    localStorage.setItem("sala", "noMeGusta");
+  }
+  irACosasLindasList(){
+  	this.mostrar = true;
+  	this.tipo_cosas = false;
+    this.SeleccionDeTipoDeFoto.emit(true);  
+  	this.router.navigate(['/cosasLindasList']);
+    localStorage.setItem("sala", "meGusta");
+  }
+   irAFotosMiasList(){
+  	this.mostrar = true;
+  	this.tipo_cosas = false;
+    this.SeleccionDeTipoDeFoto.emit(true);  
+  	this.router.navigate(['/misFotos']);
+    localStorage.setItem("sala", "mias");
+  }
+
 }

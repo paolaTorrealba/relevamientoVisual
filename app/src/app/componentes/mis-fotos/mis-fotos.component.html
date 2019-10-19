@@ -1,3 +1,20 @@
+<ion-fab vertical="top" horizontal="start" slot="fixed" *ngIf="!showSplash">
+    <ion-fab-button>
+            <ion-icon name="add"></ion-icon>
+    </ion-fab-button>					
+    <ion-fab-list side="buttom">
+            <ion-fab-button  id="idioma-esp" (mousedown)="irAInicio()">
+                <ion-icon name="home"></ion-icon>          
+            </ion-fab-button>
+            <ion-fab-button  id="idioma-esp" (mousedown)="irACosasLindasList()" >
+                <ion-icon name="happy"></ion-icon>
+            </ion-fab-button>
+            <ion-fab-button  id="idioma-esp" (mousedown)="irACosasFeasList()" >
+                <ion-icon name="sad"></ion-icon>
+            </ion-fab-button>	
+        
+    </ion-fab-list>
+  </ion-fab>
 <button class="btn-list-cancel2 "  (click)="obtenerFotosMias()" >MisFotos</button>  
 <div class="scroll">
   <ul class="ul-photo">

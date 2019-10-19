@@ -47,11 +47,14 @@
     <!-- <button class="btn-list "  (click)="obtenerFotos()">obtenerFotos</button>   -->
     <button class="btn-list-ok" (click)="guardarFoto()"><ion-icon md="md-checkmark"></ion-icon></button>  
     <button class="btn-list-cancel" (click)="irAInicio()"><ion-icon md="md-close-circle"></ion-icon></button>  
-  </div>
-
-
-  
+  </div> 
 </div>
+<ion-footer style="margin-left: 26%;margin-top: 30%;">
+  <button class="btn-list-menu "  (click)="irAInicio()"        ><ion-icon name="home"></ion-icon></button>  
+  <button class="btn-list-menu "  (click)="irACosasFeasList()" ><ion-icon name="sad"></ion-icon></button>  
+  <button class="btn-list-menu "  (click)="irACosasLindasList()" ><ion-icon name="happy"></ion-icon></button> 
+  <button class="btn-list-menu "  (click)="irAFotosMiasList()" ><ion-icon name="person"></ion-icon></button>
+</ion-footer>
 
 <!--       
 <ion-tabs>

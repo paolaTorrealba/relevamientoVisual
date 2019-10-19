@@ -1,3 +1,26 @@
+<ion-fab vertical="top" horizontal="start" slot="fixed" *ngIf="!showSplash">
+  <ion-fab-button>
+          <ion-icon name="add"></ion-icon>
+  </ion-fab-button>					
+  <ion-fab-list side="buttom">
+          <ion-fab-button  id="idioma-esp" (mousedown)="rellenarAdmin()">
+               Admin
+          </ion-fab-button>
+          <ion-fab-button  id="idioma-esp" (mousedown)="rellenarInvitado()" >
+                Invitado
+          </ion-fab-button>
+          <ion-fab-button  id="idioma-esp" (mousedown)="rellenarUsuario()" >
+                 Usuario
+          </ion-fab-button>	
+          <ion-fab-button  id="idioma-esp" (mousedown)="rellenarAnonimo()" >
+                 Anonimo
+          </ion-fab-button>	
+          <ion-fab-button  id="idioma-esp" (mousedown)="rellenarTester()" >
+                 Tester
+          </ion-fab-button>		
+  </ion-fab-list>
+</ion-fab>
+
 <div id="" class="card">
     <div id="card-content">
       <div id="card-title">
@@ -18,27 +41,17 @@
           
           <label for="user-password" style="padding-top:22px">&nbsp;Clave
             </label>
-          <input formControlName="password" class="form-content" type="password" name="password" required />
+          <input formControlName="clave" class="form-content" type="password" name="clave" required />
           <div class="form-border"></div>
-          <div class="alerta" *ngIf="!formulario.controls['password'].valid && formulario.controls['password'].touched">
+          <div class="alerta" *ngIf="!formulario.controls['clave'].valid && formulario.controls['clave'].touched">
             Este campo es requerido
           </div>
 
-          <a href="#">
-            <legend id="forgot-pass">¿Olvidó la contraseña?</legend>
-          </a>
+          
 
           <input id="submit-btn" [disabled]="!formulario.valid" (click)="onSubmitLogin(formulario.value)" type="submit" value="ACCEDER" /> 
-<div class="row">
-    <button id="relleno-btn" (click)="rellenarAdmin()">Admin</button>
-    <button id="relleno-btn" (click)="rellenarInvitado()">Inv</button>
-    <button id="relleno-btn" (click)="rellenarUsuario()">Usu</button>
-    <button id="relleno-btn" (click)="rellenarAnonimo()">Anon</button>
-    <button id="relleno-btn" (click)="rellenarTester()">Test</button>
-</div>
-         
-          
-          <a href="#" id="signup">¿No tenés cuenta todavia?</a>
+     
+              
 
         
           <!-- div *ngIf="!error">

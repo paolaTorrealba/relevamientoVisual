@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   public pass:string;
   formulario = new FormGroup({
     email: new FormControl(''),
-    password: new FormControl('')
+    clave: new FormControl('')
   });
   
   constructor(private  data:  AuthService,
@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
       this.usuarios=new Array();
       this.formulario = formB.group({
           email: [null, Validators.compose([Validators.required, Validators.email])],
-          password: [null, Validators.compose([Validators.required, Validators.minLength(6)])]
+          clave: [null, Validators.compose([Validators.required, Validators.minLength(6)])]
     })
     
   }
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
  
 
   onSubmitLogin(formValues){
-      this.data.login(formValues.email, formValues.password).then(res => {
+      this.data.login(formValues.email, formValues.clave).then(res => {
         this.data.getListaUsuarios('usuarios').subscribe(lista => {
           this.usuarios=lista;
           console.log(this.usuarios);
@@ -47,6 +47,7 @@ export class LoginComponent implements OnInit {
                 let usuario = this.usuarios[i];
                 localStorage.setItem("usuario", JSON.stringify(usuario));
                 localStorage.setItem("email", usuario.email);
+                localStorage.setItem("clave", usuario.clave);
                 // this.mostrarSpiner=false;
                 // this.navCtrl.setRoot(PrincipalPage, {usuario : res});
                 this.router.navigate(['home']);
@@ -64,6 +65,7 @@ export class LoginComponent implements OnInit {
     console.log("this.formulario:", this.formulario)
     let usuarioAlternativo= new Usuario();
     usuarioAlternativo.email="admin@admin.com";
+    usuarioAlternativo.clave="111111";
     localStorage.setItem("usuario", JSON.stringify(usuarioAlternativo));
   }
 
@@ -71,8 +73,10 @@ export class LoginComponent implements OnInit {
     this.formulario.patchValue({email: "invitado@invitado.com",clave: "222222"});
     console.log("this.formulario:", this.formulario)
     let usuarioTest= new Usuario();
-    usuarioTest.email="tester@gmail.com";
+    usuarioTest.email="invitado@invitado.com";
+    usuarioTest.clave="222222";
     localStorage.setItem("usuario", JSON.stringify(usuarioTest));
+   
   }
  
   rellenarUsuario(){
@@ -80,6 +84,7 @@ export class LoginComponent implements OnInit {
     console.log("this.formulario:", this.formulario)
     let usuarioTest= new Usuario();
     usuarioTest.email="usuario@usuario.com";
+    usuarioTest.clave="333333";
     localStorage.setItem("usuario", JSON.stringify(usuarioTest));
   }
   rellenarAnonimo(){
@@ -87,6 +92,7 @@ export class LoginComponent implements OnInit {
     console.log("this.formulario:", this.formulario)
     let usuarioAlternativo= new Usuario();
     usuarioAlternativo.email="anonimo@anonimo.com";
+    usuarioAlternativo.clave="444444";
     localStorage.setItem("usuario", JSON.stringify(usuarioAlternativo));
   }
 
@@ -95,10 +101,7 @@ export class LoginComponent implements OnInit {
     console.log("this.formulario:", this.formulario)
     let usuarioTest= new Usuario();
     usuarioTest.email="tester@tester.com";
+    usuarioTest.clave="555555";
     localStorage.setItem("usuario", JSON.stringify(usuarioTest));
-  }
-  
-
-
- 
+  } 
 }

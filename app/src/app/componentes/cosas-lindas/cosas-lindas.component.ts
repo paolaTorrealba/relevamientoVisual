@@ -245,4 +245,28 @@ export class CosasLindasComponent implements OnInit {
     this.router.navigate(['login']); 
   }
 
+  
+  irAFotosMiasList(){
+  	this.mostrar = true;
+  	this.tipo_cosas = false;
+    this.SeleccionDeTipoDeFoto.emit(true);  
+  	this.router.navigate(['/misFotos']);
+    localStorage.setItem("sala", "mias");
+  }
+
+  irACosasFeasList(){
+  	this.mostrar = true;
+  	this.tipo_cosas = false;
+    this.SeleccionDeTipoDeFoto.emit(false);  
+  	this.router.navigate(['/cosasFeasList']);
+    localStorage.setItem("sala", "noMeGusta");
+  }
+  irACosasLindasList(){
+  	this.mostrar = true;
+  	this.tipo_cosas = false;
+    this.SeleccionDeTipoDeFoto.emit(true);  
+  	this.router.navigate(['/cosasLindasList']);
+    localStorage.setItem("sala", "meGusta");
+  }
+
 }
