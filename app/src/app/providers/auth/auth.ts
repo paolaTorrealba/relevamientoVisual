@@ -11,8 +11,6 @@ export interface usuario {
   perfil: string;
   sexo: string;
 }
-
-
 export interface megusta {
   id:string;
   nrofoto:number;
@@ -20,7 +18,6 @@ export interface megusta {
   img: string;
   votos: number;
  }
-
  export interface nomegusta {
   id:string;
   nrofoto:number;
@@ -28,8 +25,6 @@ export interface megusta {
   img: string;
   votos: number;
  }
-
-
 
 @Injectable()
 export class AuthProvider {
@@ -39,8 +34,6 @@ export class AuthProvider {
    private http: HttpClient) {
 
   }
-
- 
 
   login (email:string,pass:string) {
     return this.auth.auth.signInWithEmailAndPassword(email,pass);
@@ -65,7 +58,11 @@ export class AuthProvider {
     return this.db.collection('nomegustas').add(data);
   }
 
-   getListaNoMeGusta() {  
+  guardarFotoMeGusta(data) {
+    return this.db.collection('megustas').add(data);
+  }
+
+  getListaNoMeGusta() {  
     return this.db.collection('nomegustas').snapshotChanges().pipe(map(rooms => {
       return rooms.map(a =>{
         const data = a.payload.doc.data() as nomegusta;
@@ -74,29 +71,22 @@ export class AuthProvider {
       })
     }));
   }
-
-
-actualizarFotoNoMeGusta(data) {
+  getListaMeGusta() {  
+    return this.db.collection('megustas').snapshotChanges().pipe(map(rooms => {
+      return rooms.map(a =>{
+        const data = a.payload.doc.data() as megusta;
+        data.id = a.payload.doc.id;
+        return data;
+      })
+    }));
+  }
+ actualizarFotoNoMeGusta(data) {
   return this.db.collection('nomegustas').doc(data.id).update(data);
   
 }
-// me gusta
-guardarFotoMeGusta(data) {
-  return this.db.collection('megusta').add(data);
-}
 
 actualizarFotoMeGusta(data) {
-  return this.db.collection('megusta').doc(data.id).update(data);
-}
-
-getListaMeGusta(tipo:string) {  
-  return this.db.collection(tipo).snapshotChanges().pipe(map(rooms => {
-    return rooms.map(a =>{
-      const data = a.payload.doc.data() as megusta;
-      data.id = a.payload.doc.id;
-      return data;
-    })
-  }));
+  return this.db.collection('megustas').doc(data.id).update(data);
 }
 
 }
