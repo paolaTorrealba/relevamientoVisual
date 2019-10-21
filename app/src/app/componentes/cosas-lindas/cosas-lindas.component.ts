@@ -93,11 +93,6 @@ export class CosasLindasComponent implements OnInit {
      console.log("Fotos Lindas: ",this.fotosLindas); 
   }
 
-
-
-  votar(imgRef){
-   
-  }
   limpiarListas(){
     console.log("limpiar");
     this.fotosMias= new Array();
