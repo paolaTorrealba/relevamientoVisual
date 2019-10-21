@@ -5,6 +5,7 @@ import * as firebase from "firebase";
 import { ImagePicker, ImagePickerOptions } from '@ionic-native/image-picker';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { Router } from '@angular/router';
+import { AuthProvider } from 'src/app/providers/auth/auth';
 
 @Component({
   selector: 'app-cosas-feas',
@@ -22,7 +23,7 @@ export class CosasFeasComponent implements OnInit {
   public fotos = [];
   public foto: string = "./assets/images/sinfoto.png";
   public fotosMias= new Array();
-  public fotosFeas= new Array();
+ fotosFeas;
   public fotosLindas= new Array();
 
   spinner: boolean = true;
@@ -33,6 +34,7 @@ export class CosasFeasComponent implements OnInit {
   constructor(public router: Router,
     private  data:  AuthService,
     private camera: Camera, 
+    private auth: AuthProvider,
     private camService: CamaraService) {  
 
       this.sala = localStorage.getItem("sala");      
@@ -41,58 +43,71 @@ export class CosasFeasComponent implements OnInit {
       console.log("this.usuario en constr",this.usuario);  
       console.log("email en constr",this.email);  
       console.log("sala en constr",this.sala); 
-      this.obtenerFotosMias();
+      // this.obtenerFotosMias();
+      this.obtenerFotosFeas();
       console.log("================");
     }
 
   ngOnInit() {}
 
   async abrirCamara() {
-    let date = new Date();
-    let imageName = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}-${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}-${date.getMilliseconds()}`;
+    this.foto="./assets/images/ok.png";
+    // let date = new Date();
+    // let imageName = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}-${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}-${date.getMilliseconds()}`;
 
-    try {
-      let options: CameraOptions = {
-        quality: 50,
-        targetHeight: 600,
-        targetWidth: 600,
-        destinationType: this.camera.DestinationType.DATA_URL,
-        encodingType: this.camera.EncodingType.JPEG,
-        mediaType: this.camera.MediaType.PICTURE
-      };
+    // try {
+    //   let options: CameraOptions = {
+    //     quality: 50,
+    //     targetHeight: 600,
+    //     targetWidth: 600,
+    //     destinationType: this.camera.DestinationType.DATA_URL,
+    //     encodingType: this.camera.EncodingType.JPEG,
+    //     mediaType: this.camera.MediaType.PICTURE
+    //   };
 
-      let result = await this.camera.getPicture(options);
-      let image = `data:image/jpeg;base64,${result}`;
-      let pictures = this.firebase.storage().ref(`megusta/${imageName}`);
+    //   let result = await this.camera.getPicture(options);
+    //   let image = `data:image/jpeg;base64,${result}`;
+    //   let pictures = this.firebase.storage().ref(`megusta/${imageName}`);
      
-      pictures.putString(image, "data_url").then(() => {
-        pictures.getDownloadURL().then((url) => {
-          this.foto = url;       
-        });
-      });    
+    //   pictures.putString(image, "data_url").then(() => {
+    //     pictures.getDownloadURL().then((url) => {
+    //       this.foto = url;       
+    //     });
+    //   });    
       
-    } catch (error) {
-      alert(error);
-    }
+    // } catch (error) {
+    //   alert(error);
+    // }
   }
 
   public  guardarFoto(){
     // this.obtenerFotos();    
+    console.log("longitud",this.fotosFeas.length)
     this.usuario = JSON.parse(localStorage.getItem("usuario"));    
     if (this.foto!=""){
       let data= {
         "email":this.usuario.email,
-        "img":this.foto,
-        "id": this.fotosFeas.length+1,
-        "votos":"0"
+        "img":this.foto,                
+        "votos":0,
+        "nrofoto": this.fotosFeas.length +1
       }     
-      this.data.guardarFotoNoMeGusta(data).then(res =>{  
-      }).catch(error => {
-           console.log(error,"error al guardar la imagen");   
-         });
+      console.log("data del guardado", data);
+      this.auth.guardarFotoNoMeGusta(data).then(res =>{
+        }).catch(error => {
+          console.log(error,"error al guardar la imagen"); 
+      });
     }  else {
       console.log("No hay foto nueva");
     }
+
+
+    //   this.data.guardarFotoNoMeGusta(data).then(res =>{  
+    //   }).catch(error => {
+    //        console.log(error,"error al guardar la imagen");   
+    //      });
+    // }  else {
+    //   console.log("No hay foto nueva");
+    // }
   
  }
 
@@ -142,11 +157,30 @@ limpiarListas(){
 }
 
  obtenerFotosFeas() {
-  this.data.getListaNoMeGusta('nomegusta').subscribe(lista => {
+  // console.log("fotos feas list desde obtener de  feas 1",this.fotosFeas);
+  // this.fotosFeas=new Array();
+  // this.auth.getListaNoMeGusta().subscribe(lista => {
+  //   this.fotosFeas=lista;
+  // });
+
+  // console.log("fotos feas list desde obtener de  feas 2",this.fotosFeas);
+
+  // this.data.getListaNoMeGusta('nomegusta').subscribe(lista => {
+  //       this.fotosFeas=lista;      
+  //   });
+  //   console.log("fotos feas list desde obtener de  feas 3",this.fotosFeas);
+  // this.auth.getListaNoMeGusta().subscribe(lista => {
+  //   this.fotosFeas=[];
+  //   for(let i=0;i<lista.length;i++)     {
+  //     this.fotosFeas.push(lista[i]);
+  //   }
+  
+  // });
+  this.data.getListaNoMeGusta("nomegustas").subscribe(lista => {
       this.fotosFeas=lista;      
   });
 
- console.log(this.fotosFeas);
+ console.log("fotos feasultimo compo",this.fotosFeas);
  
 } 
 
@@ -158,62 +192,6 @@ obtenerFotosLindas() {
 } 
   
 
-
-  votar(imgRef){
-    let referencia = imgRef.referencia;
-    let child;
-    let dbRefImg = this.firebase.database().ref(this.sala).child(referencia);
-    let dbRefUser = this.firebase.database().ref("usuarios").child(this.usuario.email.replace(".", ""));
-    let votos;
-
-    dbRefUser.child('votos').once("value", (snapshot) => {
-      child = snapshot.toJSON();     
-    }).then(() => {
-      
-      var voto = false;
-      for (var i in child) {
-        if (i == referencia) {
-          voto = child[i].voto;
-          break;    
-        }
-      }
-
-      if (!voto) {
-        dbRefImg.once('value', function (snapshot) {
-          votos = snapshot.toJSON();
-        }).then(() => {
-          dbRefImg.update({ votos: votos.votos + 1 }).then(() => {
-            for (var i = this.fotos.length - 1; i >= 0; i--) {
-              if(this.fotos[i].referencia == referencia)  {
-                this.fotos[i].votos++;
-                break;
-              }
-            }
-            dbRefUser.child('votos').child(referencia).set({
-              'voto': true
-            });
-
-          });
-        })
-      } else {        
-        dbRefImg.once('value', function (snapshot) {
-          votos = snapshot.toJSON();
-        }).then(() => {
-          dbRefImg.update({ votos: votos.votos - 1 }).then(() => {
-            for (var i = this.fotos.length - 1; i >= 0; i--) {
-              if(this.fotos[i].referencia == referencia) {
-                this.fotos[i].votos--;
-                break;
-              }
-            }
-            dbRefUser.child('votos').child(referencia).set({
-              'voto': false
-            });
-          });
-        })
-      }
-    });
-  }
 
 
   irACosasFeas(){

@@ -95,8 +95,8 @@ export class CosasLindasComponent implements OnInit {
     let data= {
       "email":this.usuario.email,
       "img":this.foto,
-      "id": this.fotosMeGusta.length+1,
-      "votos":"0"
+      "votos":"0",
+      "nrofoto": this.fotosMeGusta.length +1
     }
     console.log("data:",data);
     this.data.guardarFotoMeGusta(data).then(res =>{  

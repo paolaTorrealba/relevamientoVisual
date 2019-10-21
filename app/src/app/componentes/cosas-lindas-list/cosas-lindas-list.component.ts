@@ -81,4 +81,88 @@ export class CosasLindasListComponent implements OnInit {
   	this.router.navigate(['/misFotos']);
     localStorage.setItem("sala", "mias");
   }
+
+
+  votar(imgRef){
+    console.log("estoy votando",imgRef )
+    let votos=imgRef.votos;
+    if (votos === "0")
+       votos="1";
+       if (votos === "1")
+       votos="2";
+       if (votos === "2")
+       votos="3";
+       if (votos === "3")
+       votos="4";
+   
+
+    console.log(votos);
+    imgRef.votos = votos+1;
+    console.log(imgRef);
+
+    this.data.actualizarFotoMeGusta(imgRef).then(res => {   
+    
+    });
+    
+
+    // console.log("estoy votando",votos1 )
+    // let referencia = imgRef.referencia;
+    // console.log("referencia", referencia)
+    // let child;
+    // let dbRefImg = this.firebase.database().ref(this.sala).child(referencia);
+    // let dbRefUser = this.firebase.database().ref("usuarios").child(this.usuario.email.replace(".", ""));
+    // let votos;
+    // console.log("votos", votos)
+    // console.log("dbRefUser", dbRefUser)
+    // console.log("dbRefImg", dbRefImg)
+
+    // dbRefUser.child('votos').once("value", (snapshot) => {
+    //   child = snapshot.toJSON();     
+    // }).then(() => {
+      
+    //   var voto = false;
+    //   for (var i in child) {
+    //     if (i == referencia) {
+    //       voto = child[i].voto;
+    //       break;    
+    //     }
+    //   }
+
+    //   if (!voto) {
+    //     dbRefImg.once('value', function (snapshot) {
+    //       votos = snapshot.toJSON();
+    //     }).then(() => {
+    //       dbRefImg.update({ votos: votos.votos + 1 }).then(() => {
+    //         for (var i = this.fotos.length - 1; i >= 0; i--) {
+    //           if(this.fotos[i].referencia == referencia)  {
+    //             this.fotos[i].votos++;
+    //             break;
+    //           }
+    //         }
+    //         dbRefUser.child('votos').child(referencia).set({
+    //           'voto': true
+    //         });
+
+    //       });
+    //     })
+    //   } else { 
+    //     console.log("estoy en el else")       
+    //     dbRefImg.once('value', function (snapshot) {
+    //       votos = snapshot.toJSON();
+    //     }).then(() => {
+    //       dbRefImg.update({ votos: votos.votos - 1 }).then(() => {
+    //         for (var i = this.fotos.length - 1; i >= 0; i--) {
+    //           if(this.fotos[i].referencia == referencia) {
+    //             this.fotos[i].votos--;
+    //             break;
+    //           }
+    //         }
+    //         dbRefUser.child('votos').child(referencia).set({
+    //           'voto': false
+    //         });
+    //       });
+    //     })
+    //   }
+    // });
+  }
 }

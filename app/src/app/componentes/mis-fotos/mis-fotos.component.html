@@ -15,7 +15,13 @@
         
     </ion-fab-list>
   </ion-fab>
-<button class="btn-list-cancel2 "  (click)="obtenerFotosMias()" >MisFotos</button>  
+<button class="btn-list-cancel2 "  (click)="obtenerFotosMias()" >Ver Mis Fotos</button>  
+<button class="btn-list" (click)="obtenerFotosMias()">
+ <h1> Ver Mis Fotos</h1>
+</button> 
+
+
+
 <div class="scroll">
   <ul class="ul-photo">
     <div class="spinner" [ngClass]="{'ocultar':!spinner}">
@@ -34,23 +40,7 @@
   </ul>
 </div>
 
-<ion-fab vertical="center" horizontal="center" slot="fixed">
-  <ion-fab-button>
-    <ion-icon name="share"></ion-icon>
-  </ion-fab-button>
-  <ion-fab-list side="top">
-    <ion-fab-button><ion-icon name="logo-vimeo"></ion-icon></ion-fab-button>
-  </ion-fab-list>
-  <ion-fab-list side="bottom">
-    <ion-fab-button><ion-icon name="logo-facebook"></ion-icon></ion-fab-button>
-  </ion-fab-list>
-  <ion-fab-list side="start">
-    <ion-fab-button><ion-icon name="logo-instagram"></ion-icon></ion-fab-button>
-  </ion-fab-list>
-  <ion-fab-list side="end">
-    <ion-fab-button><ion-icon name="logo-twitter"></ion-icon></ion-fab-button>
-  </ion-fab-list>
-</ion-fab>
+
 <!-- <ion-row>
   <ion-col align-self-start>
     ion-col [start]

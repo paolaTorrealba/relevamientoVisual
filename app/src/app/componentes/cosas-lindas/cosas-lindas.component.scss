@@ -18,22 +18,35 @@
   width: 140px !important;
 }
 .btn-list-ok{
-    /* margin: 20px; */
-    margin-left: 8%;
-    width: 140px !important;
-    background-color: darkgreen;
-    color: rgb(255, 255, 255);
-    height: 50px;
-    border-radius: 2px;
+  margin-left: 8%;
+  width: 140px !important;
+  background-color: #000000;
+  color: #0ff300;
+  height: 50px;
+  font-size: xx-large;
+  border-radius: 10px;
 }
-.btn-list-cancel{
+.btn-list-menu{
+  margin-left: -20%;
+  margin-right: 16%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  padding-bottom: -41%;
+  width: 100px !important;
+  background-color: #f4f4f4;
+  color: #000000;
+  height: 50px;
+  font-size: xx-large;
+}
+.btn-list-cancel2{
   // margin: 20px;
   margin-left: 5%;
   width: 140px !important;
-  background-color: rgba(200, 92, 4, 0.897);
-  color: rgb(255, 255, 255);
+  background-color: rgba(0, 0, 0, 0.897);
+  color: rgb(255, 0, 0);
   height: 50px;
-  border-radius: 2px;
+  font-size: xx-large;
+  border-radius: 10px;
 }
 
 .flex-container{

@@ -6,6 +6,7 @@ import { AuthService } from  '../../servicios/auth.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 import { Router } from '@angular/router';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit {
     email: new FormControl(''),
     clave: new FormControl('')
   });
-  
+  showSplash = true;
   constructor(private  data:  AuthService,
      private formB: FormBuilder, public router: Router,) {
       this.usuarios=new Array();
@@ -31,7 +32,7 @@ export class LoginComponent implements OnInit {
     })
     
   }
-  ngOnInit() { }
+  ngOnInit() {  timer(3000).subscribe(() => this.showSplash = false) }
  
 
   onSubmitLogin(formValues){

@@ -1,10 +1,27 @@
+<ion-fab vertical="top" horizontal="start" slot="fixed" *ngIf="!showSplash">
+  <ion-fab-button>
+          <ion-icon name="add"></ion-icon>
+  </ion-fab-button>					
+  <ion-fab-list side="buttom">
+          <ion-fab-button  id="idioma-esp" (mousedown)="irAInicio()">
+              <ion-icon name="home"></ion-icon>          
+          </ion-fab-button>
+          <ion-fab-button  id="idioma-esp" (mousedown)="irACosasFeasList()" >
+              <ion-icon name="sad"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-button  id="idioma-esp" (mousedown)="irAFotosMiasList()" >
+              <ion-icon name="person"></ion-icon>
+          </ion-fab-button>	
+      
+  </ion-fab-list>
+</ion-fab>
 <div class="scroll">
   <ul class="ul-photo">
     <div class="spinner" [ngClass]="{'ocultar':!spinner}">
     </div>
     <li class="img-list" *ngFor="let item of fotosLindas">
        
-          <img style="max-width: 30%;" src={{item.img}} alt="foto" class="img-thumbnail photo"> 
+          <img style="max-width: 10%;" src={{item.img}} alt="foto" class="img-thumbnail photo"> 
 
           <div class="contenido">            
             <p class="text-right">{{item.email}}</p>

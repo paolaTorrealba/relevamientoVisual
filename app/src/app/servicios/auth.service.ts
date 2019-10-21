@@ -19,17 +19,17 @@ export interface usuario {
 }
 
 export interface megusta {
-  id: string;
+  id:string;
   email: string;
   img: string;
-  votos: string;
+  votos: number;
  }
 
  export interface nomegusta {
-  id: string;
+  id:string;
   email: string;
   img: string;
-  votos: string;
+  votos: number;
  }
  
 
@@ -83,13 +83,20 @@ export class AuthService {
       })
     }));
   }
-
+  // actualizarFotoNoMeGusta(data) {
+  //   return this.firestore.collection('VXHqZWSJ1NejWt6XLbBI').doc('nomegusta').update(data);
+    
+  // }
+  actualizarFotoMeGusta(data) {
+    return this.firestore.collection('megusta').doc(data.id).update(data);
+  }
 
  public getListaMeGusta(tipo:string) {
   //  console.log("getListaMeGusta");
     return this.firestore.collection(tipo).snapshotChanges().pipe(map(rooms => {
       return rooms.map(a =>{
         const data = a.payload.doc.data() as megusta;
+        data.id = a.payload.doc.id;
         return data;
       })
     }));
@@ -103,6 +110,7 @@ export class AuthService {
       return this.firestore.collection(tipo).snapshotChanges().pipe(map(rooms => {
         return rooms.map(a =>{
           const data = a.payload.doc.data() as nomegusta;
+          data.id = a.payload.doc.id;
           return data;
         })
       }));

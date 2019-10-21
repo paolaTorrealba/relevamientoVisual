@@ -17,6 +17,7 @@ import { CosasLindasComponent } from './componentes/cosas-lindas/cosas-lindas.co
 import { CosasFeasComponent } from './componentes/cosas-feas/cosas-feas.component';  
 import { MisFotosComponent } from './componentes/mis-fotos/mis-fotos.component';  
 import { GraficaComponent } from './componentes/grafica/grafica.component';  
+import { AuthProvider } from './providers/auth/auth';
 
 import { AngularFireModule } from '@angular/fire'; 
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -28,6 +29,7 @@ import { SplashComponent } from './componentes/splash/splash.component';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 //import { HttpClientModule } from '@angular/common/http'; 
 //import { HttpModule, Http } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http'; 
 import { AngularFirestore, AngularFirestoreModule } from "@angular/fire/firestore"; 
 import { CosasLindasListComponent } from './componentes/cosas-lindas-list/cosas-lindas-list.component';
 import { CosasFeasListComponent } from './componentes/cosas-feas-list/cosas-feas-list.component';
@@ -59,6 +61,7 @@ generar splash e icon: https://blog.ng-classroom.com/blog/tips/preparando-iconos
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    HttpClientModule,
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     AngularFirestoreModule,
@@ -68,6 +71,7 @@ generar splash e icon: https://blog.ng-classroom.com/blog/tips/preparando-iconos
   providers: [
     StatusBar,
     SplashScreen,
+    AuthProvider,
     Camera,
     AngularFirestore,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

@@ -6,29 +6,6 @@
         </span>
       </button> 
   </div>
- 
-  
-  <!-- <div class="scroll">
-    <ul class="ul-photo">
-      <div class="spinner" [ngClass]="{'ocultar':!spinner}">
-      </div>
-      <li class="img-list" *ngFor="let item of fotosMeGusta">
-          <ion-thumbnail item-start>
-              <img src={{item.img}}>
-            </ion-thumbnail> -->
-            <!-- <img src={{item.img}} alt="foto" class="img-thumbnail photo"> -->
-
-            <!-- <div class="contenido">
-              
-              <p class="text-right">{{item.email}}</p>
-              <p class="text-center">Votos: {{item.votos}}</p>
-              <button type="button" (click)="votar(item)" class="btn btn-primary btn-voto btn-block">Votar</button>
-
-            </div>
-      </li>
-    </ul>
-  </div> -->
-
   <ion-card>
       <button style="background-color: transparent;    margin-top: inherit;" (click)="abrirCamara()">
            <img src={{this.foto}}>
@@ -38,54 +15,28 @@
        Tu Foto
        </ion-card-title>
       <p style="margin-left: 30%;  color: #000000ad;">
-        Esta foto es acerca de algo que te ha gustado
+        Esta foto es acerca de algo que  te ha gustado
       </p>
     </ion-card-content>
   </ion-card>
 
-  <div>
-    <!-- <button class="btn-list "  (click)="obtenerFotos()">obtenerFotos</button>   -->
-    <button class="btn-list-ok" (click)="guardarFoto()"><ion-icon md="md-checkmark"></ion-icon></button>  
-    <button class="btn-list-cancel" (click)="irAInicio()"><ion-icon md="md-close-circle"></ion-icon></button>  
+  <div>   
+    <button class="btn-list-ok" (click)="guardarFoto()"><ion-icon md="md-checkmark-circle"></ion-icon></button>  
+    <button class="btn-list-cancel2" (click)="irAInicio()"><ion-icon md="md-close-circle"></ion-icon></button>  
   </div> 
-</div>
+  
+    
+   
+</div> 
 <ion-footer style="margin-left: 26%;margin-top: 30%;">
-  <button class="btn-list-menu "  (click)="irAInicio()"        ><ion-icon name="home"></ion-icon></button>  
-  <button class="btn-list-menu "  (click)="irACosasFeasList()" ><ion-icon name="sad"></ion-icon></button>  
-  <button class="btn-list-menu "  (click)="irACosasLindasList()" ><ion-icon name="happy"></ion-icon></button> 
-  <button class="btn-list-menu "  (click)="irAFotosMiasList()" ><ion-icon name="person"></ion-icon></button>
+
+    <button class="btn-list-menu "  (click)="irAInicio()"        ><ion-icon name="home"></ion-icon></button>  
+    <button class="btn-list-menu "  (click)="irACosasFeasList()" ><ion-icon name="sad"></ion-icon></button> 
+    <button class="btn-list-menu "  (click)="irACosasLindasList()" ><ion-icon name="happy"></ion-icon></button>  
+    <button class="btn-list-menu "  (click)="irAFotosMiasList()" ><ion-icon name="person"></ion-icon></button>
+
 </ion-footer>
 
-<!--       
-<ion-tabs>
-  <ion-tab-bar slot="bottom">
-    <ion-tab-button (click)="irAInicio()">
-      <ion-icon name="home"></ion-icon>
-      <ion-label>Inicio</ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button (click)="irACosasFeas()">
-      <ion-icon name="thumbs-down"></ion-icon>
-      <ion-label>Cosas Feas</ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button (click)="irAMisFotos()">
-      <ion-icon name="images"></ion-icon>
-      <ion-label>Mis Fotos</ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button (click)="salir()">
-      <ion-icon name="log-out"></ion-icon>
-      <ion-label>Salir</ion-label>
-    </ion-tab-button>
-  </ion-tab-bar>
-</ion-tabs> -->
 
 
 
-<!-- //// -->
-     <!-- <button class="btn-list ocultar" id="btn-grafico">
-        <span class="icon">
-          <img class="img-camara" src="./assets/images/grafico.svg" routerLink="grafico" alt="">  
-        </span>
-      </button>   -->
