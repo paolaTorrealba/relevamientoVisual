@@ -16,6 +16,7 @@ export class CosasFeasListComponent implements OnInit {
 
   public firebase = firebase;
   public usuario;
+  fotoActual;
   public sala;
   public fotos = [];
   public foto: string = "./assets/images/sinfoto.png";
@@ -30,6 +31,7 @@ export class CosasFeasListComponent implements OnInit {
       this.usuario = JSON.stringify(localStorage.getItem('usuario'));
       this.email = localStorage.getItem("email");          
       this.obtenerFotosFeas();
+      console.log("Fotos Feas List:1 ",this.fotosFeas); 
     }
 
   ngOnInit() {
@@ -39,7 +41,10 @@ export class CosasFeasListComponent implements OnInit {
   obtenerFotosFeas() {
      this.fotosFeas=new Array();
      this.data.getListaNoMeGusta("nomegustas").subscribe(lista => {
-      this.fotosFeas=lista;      
+      this.fotosFeas=lista;
+      this.fotoActual=lista[0];   
+      console.log("lista: ",lista); 
+      console.log("la primer foto:",this.fotoActual);  
     });
     //  this.auth.getListaNoMeGusta().subscribe(lista => {
     //       this.fotosFeas=lista;

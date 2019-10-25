@@ -36,6 +36,7 @@ export class MisFotosComponent implements OnInit {
   }
 
   obtenerFotosMias() {   
+    console.log("obtener fotos mias")
      this.obtenerFotosFeas();
      this.obtenerFotosLindas();  
      for(let i=0;i<this.fotosFeas.length;i++){                 

@@ -12,10 +12,13 @@
           </ion-fab-button>
           <ion-fab-button  id="idioma-esp" (mousedown)="irAFotosMiasList()" >
               <ion-icon name="person"></ion-icon>
-          </ion-fab-button>	      
+          </ion-fab-button>	
+          <ion-fab-button  id="idioma-esp" (mousedown)="salir()" >
+            <ion-icon name="log-out"></ion-icon>
+          </ion-fab-button>      
   </ion-fab-list>
 </ion-fab>
- <div class="scroll">
+ <div class="scroll" style="margin-left: 20%;">
     <ul class="ul-photo">
       <div class="spinner" [ngClass]="{'ocultar':!spinner}"></div>
       <li class="img-list" *ngFor="let item of fotosFeas">          

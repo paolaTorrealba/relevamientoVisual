@@ -1,7 +1,7 @@
 <br><br><br><br>
 <ion-fab vertical="top" horizontal="start" slot="fixed" *ngIf="!showSplash">
     <ion-fab-button><ion-icon name="add"></ion-icon></ion-fab-button>					
-    <ion-fab-list side="buttom">
+    <ion-fab-list side="end">
             <ion-fab-button  id="idioma-esp" (mousedown)="irAInicio()">
                 <ion-icon name="home"></ion-icon>          
             </ion-fab-button>
@@ -10,13 +10,16 @@
             </ion-fab-button>
             <ion-fab-button  id="idioma-esp" (mousedown)="irACosasFeasList()" >
                 <ion-icon name="sad"></ion-icon>
-            </ion-fab-button>	        
+            </ion-fab-button>	  
+            <ion-fab-button  id="idioma-esp" (mousedown)="salir()" >
+              <ion-icon name="log-out"></ion-icon>
+            </ion-fab-button>      
     </ion-fab-list>
 </ion-fab>
 <div class="scroll">
   <ul class="ul-photo">
     <div class="spinner" [ngClass]="{'ocultar':!spinner}"></div>
-    <li class="img-list" *ngFor="let item of fotosMias">      
+    <li class="img-list" *ngFor="let item of fotosLindas">      
           <img style="max-width: 30%;" src={{item.img}} alt="foto" class="img-thumbnail photo"> 
           <div class="contenido">            
             <p class="text-right">{{item.email}}</p>
@@ -24,50 +27,37 @@
             <button type="button" (click)="votar(item)" class="btn btn-primary btn-voto btn-block">Votar</button>
           </div>
     </li>
+    <li class="img-list" *ngFor="let item of fotosFeas">      
+      <img style="max-width: 30%;" src={{item.img}} alt="foto" class="img-thumbnail photo"> 
+      <div class="contenido">            
+        <p class="text-right">{{item.email}}</p>
+        <p class="text-center">Votos: {{item.votos}}</p>
+        <button type="button" (click)="votar(item)" class="btn btn-primary btn-voto btn-block">Votar</button>
+      </div>
+</li>
   </ul>
 </div>
 
-<button class="btn-list-cancel2 "  (click)="obtenerFotosMias()" >Ver Mis Fotos</button>  
-<button class="btn-list" (click)="obtenerFotosMias()">
- <h1> Ver Mis Fotos</h1>
-</button>  
-<!-- <ion-row>
-  <ion-col align-self-start>
-    ion-col [start]
-  </ion-col>
-  <ion-col align-self-center>
-    ion-col [center]
-  </ion-col>
-  <ion-col align-self-end>
-    ion-col [end]
-  </ion-col>
-  <ion-col>
-    ion-col
-    <br>#
-    <br>#
-  </ion-col>
-</ion-row>
 
-<ion-tabs>
-  <ion-tab-bar slot="bottom">
-    <ion-tab-button (click)="irAInicio()">
-      <ion-icon name="home"></ion-icon>
-      <ion-label>Inicio</ion-label>
-     </ion-tab-button>
 
-    <ion-tab-button (click)="irACosasLindas()">
-      <ion-icon name="thumbs-up"></ion-icon>
-      <ion-label>Cosas Lindas</ion-label>
-    </ion-tab-button>
+<!-- 
+<ion-list *ngFor="let item of fotosMias">
+  <ion-item-sliding>
+    <ion-item>
+      <ion-label><p class="text-right">{{item.email}}</p>
+        <p class="text-center">Votos: {{item.votos}}</p></ion-label>
+    </ion-item>
+    <ion-item-options side="end">
+      <img style="max-width: 30%;" src={{item.img}} alt="foto" class="img-thumbnail photo"> 
+    </ion-item-options>
+  </ion-item-sliding>
 
-    <ion-tab-button (click)="irACosasFeas()">
-      <ion-icon name="thumbs-down"></ion-icon>
-      <ion-label>Cosas Feas</ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button (click)="salir()">
-      <ion-icon name="log-out"></ion-icon>
-      <ion-label>Salir</ion-label>
-    </ion-tab-button>
-  </ion-tab-bar>
-</ion-tabs> -->
+  <ion-item-sliding>
+    <ion-item>
+      <ion-label>Item</ion-label>
+    </ion-item>
+    <ion-item-options side="end">
+      <ion-item-option (click)="unread(item)">Unread</ion-item-option>
+    </ion-item-options>
+  </ion-item-sliding>
+</ion-list> -->

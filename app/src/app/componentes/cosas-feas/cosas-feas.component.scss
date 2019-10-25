@@ -4,6 +4,7 @@
 
 .grid-container {
   display: grid;
+  padding-top: 10%;
   grid-template-columns: 1fr;
   grid-template-rows: 0.3fr 1.7fr;
   grid-template-areas: "." ".";
@@ -18,12 +19,13 @@
   width: 140px !important;
 }
 .btn-list-ok{
-  margin-left: 8%;
+  margin-left: 11%;
   width: 140px !important;
   background-color: #000000;
   color: #0ff300;
-  height: 50px;
+  height: 65px;
   font-size: xx-large;
+  margin-top: 10%;
   border-radius: 10px;
 }
 .btn-list-menu{
@@ -39,13 +41,13 @@
   font-size: xx-large;
 }
 .btn-list-cancel2{
-  // margin: 20px;
-  margin-left: 5%;
+  margin-left: 11%;
   width: 140px !important;
   background-color: rgba(0, 0, 0, 0.897);
   color: rgb(255, 0, 0);
-  height: 50px;
+  height: 65px;
   font-size: xx-large;
+  margin-top: 10%;
   border-radius: 10px;
 }
 

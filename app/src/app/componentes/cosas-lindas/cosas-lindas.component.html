@@ -10,10 +10,13 @@
           </ion-fab-button>
           <ion-fab-button  id="idioma-esp" (mousedown)="irACosasLindasList()" >
             <ion-icon name="happy"></ion-icon>
-        </ion-fab-button>	
+          </ion-fab-button>	
           <ion-fab-button  id="idioma-esp" (mousedown)="irAFotosMiasList()" >
               <ion-icon name="person"></ion-icon>
-          </ion-fab-button>	      
+          </ion-fab-button>	  
+          <ion-fab-button  id="idioma-esp" (mousedown)="salir()" >
+            <ion-icon name="log-out"></ion-icon>
+          </ion-fab-button>    
   </ion-fab-list>
 </ion-fab>
 
@@ -26,7 +29,9 @@
       </button> 
   </div> -->
   <ion-card>
-      <button style="background-color: transparent;    margin-top: inherit;" (click)="abrirCamara()">
+      <button  style="background-color: transparent;
+      margin-bottom: 170%;  margin-top: inherit;" 
+      (click)="abrirCamara()">
            <img src={{this.foto}}>
       </button>
     <ion-card-content>
