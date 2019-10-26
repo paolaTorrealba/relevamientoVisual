@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/servicios/auth.service';
 import * as firebase from "firebase";
 import { AuthProvider } from 'src/app/providers/auth/auth';
+import { DeviceMotion, DeviceMotionAccelerationData, DeviceMotionAccelerometerOptions } from '@ionic-native/device-motion/ngx';
+import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-cosas-feas-list',
@@ -14,24 +17,40 @@ export class CosasFeasListComponent implements OnInit {
   mostrar: boolean;
   tipo_cosas: boolean;
 
+
+  // agrego movimiento
+  x:string;
+  y:string;
+  z:string;
+  seMovio: any;
+  timeStamp:string;
+  off=true;
+  on=false;  
+  public posicion=0;
+  id: Subscription;
+  //  fin movimiento
   public firebase = firebase;
   public usuario;
   fotoActual;
   public sala;
+  public voto;
   public fotos = [];
   public foto: string = "./assets/images/sinfoto.png";
   public fotosMias= new Array();
   public fotosFeas=new Array();
-  public fotosLindas= new Array();
   spinner: boolean = true;
   public email:string;
 
-  constructor(public router: Router, private auth: AuthProvider, private  data:  AuthService ) { 
-      this.sala = localStorage.getItem("sala");      
+  constructor(public deviceMotion: DeviceMotion,
+      public router: Router, private auth: AuthProvider,
+      private  data:  AuthService ) { 
+      this.sala = localStorage.getItem("sala");  
+      localStorage.setItem("votoFeas", "no");  
+      this.voto="no";   
       this.usuario = JSON.stringify(localStorage.getItem('usuario'));
       this.email = localStorage.getItem("email");          
-      this.obtenerFotosFeas();
-      console.log("Fotos Feas List:1 ",this.fotosFeas); 
+      this.start();
+      
     }
 
   ngOnInit() {
@@ -39,30 +58,68 @@ export class CosasFeasListComponent implements OnInit {
   }
 
   obtenerFotosFeas() {
-     this.fotosFeas=new Array();
-     this.data.getListaNoMeGusta("nomegustas").subscribe(lista => {
+      this.fotosFeas=new Array();
+      this.data.getListaNoMeGusta("nomegustas").subscribe(lista => {
       this.fotosFeas=lista;
-      this.fotoActual=lista[0];   
-      console.log("lista: ",lista); 
-      console.log("la primer foto:",this.fotoActual);  
+      this.fotoActual=lista[this.posicion];
     });
-    //  this.auth.getListaNoMeGusta().subscribe(lista => {
-    //       this.fotosFeas=lista;
-    //  });
-    //  console.log("Fotos Feas List:1 ",this.fotosFeas);    
+     
   } 
-  
-  votar(imgRef){
-    this.obtenerFotosFeas();
-    // this.data.getListaNoMeGusta("nomegustas").subscribe(lista => {
-    //   this.fotosFeas=lista;      
-    // });
-    console.log("fotos feas: ", this.fotosFeas);
-    console.log("item votos: ",imgRef );
-    imgRef.votos = imgRef.votos+1;
-    console.log("item votos actualizado: ",imgRef );
-    this.auth.actualizarFotoNoMeGusta(imgRef).then(res => {      
+
+  // MOVIMIENTO
+  start(){
+    this.off=false;
+    this.on=true;         
+    this.seMovio=false;
+    var option: DeviceMotionAccelerometerOptions = {frequency: 1000 };
+    this.id= this.deviceMotion.watchAcceleration(option).subscribe((result: DeviceMotionAccelerationData) =>
+    {
+        this.x= "" + result.x;
+        this.y= "" + result.y;
+        this.z= "" + result.z;
+        this.timeStamp= ""+result.timestamp;
+
+        //lateral izquierdo x=9
+        if (result.x>8.6  && result.x<9.9 ){
+             this.siguiente();               
+        }            
+        //lateral derecho x=-9
+        if (result.x<-8.5 && result.x>-9.5){
+             this.anterior();           
+        }        
+        
     });    
+  } 
+// FIN MOVIMIENTO
+  
+siguiente() {
+  console.log("posicion: ",this.posicion);
+  this.posicion= this.posicion+1;
+  console.log("pocision +1:",this.posicion);
+  if (this.posicion<=this.fotosFeas.length-1 && this.posicion>=0){      
+    this.obtenerFotosFeas();
+  }    
+}
+
+anterior() {
+  console.log("posicion: ",this.posicion);
+  this.posicion= this.posicion-1;
+  console.log("pocision -1:",this.posicion);
+  if (this.posicion<=this.fotosFeas.length-1 && this.posicion>=0){      
+    this.obtenerFotosFeas();
+  }       
+}
+
+  votar(imgRef){
+    console.log("votando")
+    console.log(this.voto)
+    if (this.voto === "no"){
+        localStorage.setItem("votoFeas", "si"); 
+        this.obtenerFotosFeas();   
+        imgRef.votos = imgRef.votos+1;  
+        this.auth.actualizarFotoNoMeGusta(imgRef).then(res => {      
+        });    
+     }
   }
 
   irAInicio(){  
@@ -98,13 +155,5 @@ export class CosasFeasListComponent implements OnInit {
   	this.router.navigate(['/misFotos']);
     localStorage.setItem("sala", "mias");
   }
-  // irACosasLindas(){
-  // 	this.mostrar = true;
-  // 	this.tipo_cosas = false;
-  // 	this.SeleccionDeTipoDeFoto.emit(false);
-  // 	this.router.navigate(['/cosasLindas']);
-  //   localStorage.setItem("sala", "meGusta");
-  // }
-
-
+  
 }

@@ -1,6 +1,8 @@
 import { NgModule, NgZone } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy, RouterModule } from '@angular/router';
+import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device-motion/ngx';
+
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -27,8 +29,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SplashComponent } from './componentes/splash/splash.component';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-//import { HttpClientModule } from '@angular/common/http'; 
-//import { HttpModule, Http } from '@angular/http';
+
 import { HttpClientModule } from '@angular/common/http'; 
 import { AngularFirestore, AngularFirestoreModule } from "@angular/fire/firestore"; 
 import { CosasLindasListComponent } from './componentes/cosas-lindas-list/cosas-lindas-list.component';
@@ -72,7 +73,7 @@ generar splash e icon: https://blog.ng-classroom.com/blog/tips/preparando-iconos
     StatusBar,
     SplashScreen,
     AuthProvider,
-    Camera,
+    Camera, DeviceMotion, 
     AngularFirestore,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

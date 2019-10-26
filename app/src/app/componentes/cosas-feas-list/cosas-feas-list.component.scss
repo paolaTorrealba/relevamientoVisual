@@ -11,3 +11,24 @@ cosas-feas-list {
 		max-width: 70%;
 	}
 }
+
+.micard{
+    margin-left: unset;
+    margin-right: unset;
+    -webkit-margin-start: 10px;
+    margin-inline-start: 10px;
+    -webkit-margin-end: 10px;
+    margin-inline-end: 10px;
+    background-color: #f19e25;
+  }
+
+  .btn-list-ok{
+    margin-left: 31%;
+    width: 90px !important;
+    background-color: #e4cb66;
+    color: #000000;
+    height: 65px;
+    font-size: x-large;
+    margin-top: 10%;
+    border-radius: 10px;
+  }

@@ -67,6 +67,15 @@ img{
   height: 50%;
   margin-left: 15%;
 }
+.micard{
+  margin-left: unset;
+  margin-right: unset;
+  -webkit-margin-start: 10px;
+  margin-inline-start: 10px;
+  -webkit-margin-end: 10px;
+  margin-inline-end: 10px;
+  background-color: #adff2f8a;
+}
 
 .img-list{
 	grid-row: 2;

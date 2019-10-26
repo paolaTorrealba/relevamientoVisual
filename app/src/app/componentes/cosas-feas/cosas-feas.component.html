@@ -19,16 +19,8 @@
           </ion-fab-button>      
   </ion-fab-list>
 </ion-fab>
-
 <div class="grid-container">
-  <!-- <div class="flex-container">
-      <button class="btn-list" (click)="abrirCamara()">
-        <span class="icon">
-          <img class="img-camara" src="./assets/images/camara-de-fotos.svg" alt="">  
-        </span>
-      </button> 
-  </div> -->
-  <ion-card>
+  <ion-card class="micard">
       <button style="background-color: transparent;
                      margin-bottom: 170%;  margin-top: inherit;" 
                      (click)="abrirCamara()">
@@ -43,23 +35,13 @@
       </p>
     </ion-card-content>
   </ion-card>
-
   <div>   
     <button class="btn-list-ok" (click)="guardarFoto()"><ion-icon md="md-checkmark-circle"></ion-icon></button>  
     <button class="btn-list-cancel2" (click)="irAInicio()"><ion-icon md="md-close-circle"></ion-icon></button>  
-  </div> 
-  
-    
+  </div>    
    
 </div> 
-<!-- <ion-footer style="margin-left: 26%;margin-top: 30%;">
 
-    <button class="btn-list-menu "  (click)="irAInicio()"        ><ion-icon name="home"></ion-icon></button>  
-    <button class="btn-list-menu "  (click)="irACosasFeasList()" ><ion-icon name="sad"></ion-icon></button>  
-    <button class="btn-list-menu "  (click)="irACosasLindasList()" ><ion-icon name="happy"></ion-icon></button> 
-    <button class="btn-list-menu "  (click)="irAFotosMiasList()" ><ion-icon name="person"></ion-icon></button>
-
-</ion-footer> -->
 
 
 
