@@ -23,12 +23,14 @@ export interface megusta {
   email: string;
   img: string;
   votos: number;
+  votosusuario:Array<any>,
  }
 
  export interface nomegusta {
   id:string;
   email: string;
   img: string;
+  votosusuario:Array<any>,
   votos: number;
  } 
 

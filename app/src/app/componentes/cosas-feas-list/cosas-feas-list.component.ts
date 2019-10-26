@@ -33,6 +33,7 @@ export class CosasFeasListComponent implements OnInit {
   public usuario;
   fotoActual;
   public sala;
+  yavoto=false; 
   public voto;
   public fotos = [];
   public foto: string = "./assets/images/sinfoto.png";
@@ -86,7 +87,11 @@ export class CosasFeasListComponent implements OnInit {
         //lateral derecho x=-9
         if (result.x<-8.5 && result.x>-9.5){
              this.anterior();           
-        }        
+        }      
+        if (result.y<9.5 && result.y>8.5){
+          this.inicio();            
+
+      }  
         
     });    
   } 
@@ -110,16 +115,31 @@ anterior() {
   }       
 }
 
+inicio(){     
+  this.posicion= 0;      
+  if (this.posicion<=this.fotosFeas.length-1 && this.posicion>=0){      
+    this.obtenerFotosFeas();
+  }    
+}
   votar(imgRef){
-    console.log("votando")
-    console.log(this.voto)
-    if (this.voto === "no"){
-        localStorage.setItem("votoFeas", "si"); 
-        this.obtenerFotosFeas();   
-        imgRef.votos = imgRef.votos+1;  
-        this.auth.actualizarFotoNoMeGusta(imgRef).then(res => {      
-        });    
-     }
+    
+    for(let i=0;i<this.fotoActual.votosusuario.length;i++){
+      if(this.fotoActual.votosusuario[i] === this.email) {
+        console.log("el usuario ya voto la foto");  
+        this.yavoto=true;       
+      }
+    }
+    if (!this.yavoto){
+      console.log("no voto")
+      this.obtenerFotosFeas();
+      imgRef.votos = imgRef.votos+1;
+      imgRef.votosusuario.push(this.email);
+      console.log("imgRef",imgRef);
+      this.auth.actualizarFotoNoMeGusta(imgRef).then(res => {      
+      });           
+    }
+  
+     
   }
 
   irAInicio(){  

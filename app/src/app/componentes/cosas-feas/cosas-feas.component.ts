@@ -79,6 +79,7 @@ export class CosasFeasComponent implements OnInit {
         "email":this.usuario.email,
         "img":this.foto,                
         "votos":0,
+        "votosusuario":[],
         "nrofoto": this.fotosFeas.length +1
       }     
       console.log("item guardado:", data);

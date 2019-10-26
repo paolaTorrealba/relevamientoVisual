@@ -34,6 +34,7 @@ export class CosasLindasListComponent implements OnInit {
   public usuario;
   public voto;
   public sala;
+  yavoto=false; 
   public fotoActual;
   public fotosMias= new Array();
   public fotosLindas= new Array();
@@ -67,6 +68,7 @@ export class CosasLindasListComponent implements OnInit {
           this.data.getListaMeGusta("megustas").subscribe(lista => {
           this.fotosLindas=lista;        
           this.fotoActual=lista[this.posicion];
+         
           console.log("la pocision: ", this.posicion);
           console.log("lista: ",lista[this.posicion]); 
           console.log("la primer foto:",this.fotoActual);  
@@ -94,7 +96,12 @@ export class CosasLindasListComponent implements OnInit {
               //lateral derecho x=-9
               if (result.x<-8.5 && result.x>-9.5){
                    this.anterior();           
-              }        
+              }     
+               //vertical
+          if (result.y<9.5 && result.y>8.5){
+              this.inicio();            
+    
+          }   
               
           });    
         } 
@@ -117,16 +124,30 @@ export class CosasLindasListComponent implements OnInit {
         this.obtenerFotosLindas();
       }       
     }
+    inicio(){     
+      this.posicion= 0;      
+      if (this.posicion<=this.fotosLindas.length-1 && this.posicion>=0){      
+        this.obtenerFotosLindas();
+      }    
+    }
 
     votar(imgRef){
-      if (this.voto === "no"){
-          localStorage.setItem("votoLindas", "si"); 
-          this.obtenerFotosLindas();
-          imgRef.votos = imgRef.votos+1;
-          this.auth.actualizarFotoMeGusta(imgRef).then(res => {      
-          });    
+      console.log("los votos",this.fotoActual.votosusuario[0]  )
+      for(let i=0;i<this.fotoActual.votosusuario.length;i++){
+        if(this.fotoActual.votosusuario[i] === this.email) {
+          console.log("el usuario ya voto la foto");  
+          this.yavoto=true;       
+        }
       }
-     
+      if (!this.yavoto){
+        console.log("no voto")
+        this.obtenerFotosLindas();
+        imgRef.votos = imgRef.votos+1;
+        imgRef.votosusuario.push(this.email);
+        console.log("imgRef",imgRef);
+        this.auth.actualizarFotoMeGusta(imgRef).then(res => {      
+        });           
+      }
     }
 
   irAInicio(){  
