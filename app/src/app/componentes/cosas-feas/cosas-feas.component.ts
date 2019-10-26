@@ -21,7 +21,7 @@ export class CosasFeasComponent implements OnInit {
   public sala;
   public fotos = [];
   public foto: string = "./assets/images/sinfoto.png";
-  public fotosMias= new Array();
+  public misFotos= new Array();
   fotosFeas;
   public fotosLindas= new Array();
 
@@ -89,11 +89,33 @@ export class CosasFeasComponent implements OnInit {
     }  else {
       console.log("No hay foto nueva");
     }  
+
+    this.guardarEnMisFotos();
  }  
+ 
+ guardarEnMisFotos(){
+ 
+  this.usuario = JSON.parse(localStorage.getItem("usuario"));    
+  if (this.foto!=""){
+    let data= {
+      "email":this.usuario.email,
+      "img":this.foto,                
+      "nrofoto": this.misFotos.length +1
+    }     
+  
+    this.auth.guardarMiFoto(data).then(res =>{
+      }).catch(error => {
+        console.log(error,"error al guardar la imagen"); 
+    });
+  }  else {
+    console.log("No hay foto nueva");
+  }  
+
+ }
 
  limpiarListas(){
     console.log("limpiar");
-    this.fotosMias= new Array();
+    this.misFotos= new Array();
     this.fotosFeas= new Array();
     this.fotosLindas= new Array();
  }

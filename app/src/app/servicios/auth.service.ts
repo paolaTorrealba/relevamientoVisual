@@ -32,6 +32,13 @@ export interface megusta {
   votos: number;
  } 
 
+ export interface mifoto {
+  id:string;
+  email: string;
+  img: string;
+  
+ } 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -63,10 +70,22 @@ export class AuthService {
     return this.firestore.collection('megusta').doc(data.id).update(data);
   }
 
+  actualizarFotoMia(data) {
+    return this.firestore.collection('mifoto').doc(data.id).update(data);    
+  }
   getListaMeGusta(tipo:string) { 
     return this.firestore.collection(tipo).snapshotChanges().pipe(map(rooms => {
       return rooms.map(a =>{
         const data = a.payload.doc.data() as megusta;
+        data.id = a.payload.doc.id;
+        return data;
+      })
+    }));
+  }
+  getListaMisFotos(tipo:string) { 
+    return this.firestore.collection(tipo).snapshotChanges().pipe(map(rooms => {
+      return rooms.map(a =>{
+        const data = a.payload.doc.data() as mifoto;
         data.id = a.payload.doc.id;
         return data;
       })
@@ -89,6 +108,9 @@ export class AuthService {
   guardarFotoNoMeGusta(data) {
     return this.firestore.collection('nomegusta').add(data);
   }  
+  guardarFotoMia(data) {
+    return this.firestore.collection('mifoto').add(data);
+  } 
 
   guardarUsuario(){
     console.log("guardar usuario de auth");

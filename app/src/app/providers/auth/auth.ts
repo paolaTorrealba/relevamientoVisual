@@ -26,6 +26,14 @@ export interface megusta {
   votos: number;
  }
 
+ export interface mifoto{
+  id:string;
+  nrofoto:number;
+  email: string;
+  img: string;
+ 
+ }
+
 @Injectable()
 export class AuthProvider {
 
@@ -88,5 +96,25 @@ export class AuthProvider {
 actualizarFotoMeGusta(data) {
   return this.db.collection('megustas').doc(data.id).update(data);
 }
+
+
+guardarMiFoto(data) {
+  return this.db.collection('misfotos').add(data);
+}
+
+actualizarMiFoto(data) {
+  return this.db.collection('misfotos').doc(data.id).update(data);
+}
+
+getListaMiFoto() {  
+  return this.db.collection('misfotos').snapshotChanges().pipe(map(rooms => {
+    return rooms.map(a =>{
+      const data = a.payload.doc.data() as mifoto;
+      data.id = a.payload.doc.id;
+      return data;
+    })
+  }));
+}
+
 
 }

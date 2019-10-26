@@ -18,7 +18,9 @@ export class MisFotosComponent implements OnInit {
   public sala;
   public fotosMias= new Array();
   public fotosFeas= new Array();
-  public fotosLindas= new Array();
+  public fotosLista= new Array();
+  public fotoActual;
+  public posicion=0;
   public email:string;
   spinner: boolean = true;
 
@@ -28,41 +30,58 @@ export class MisFotosComponent implements OnInit {
       this.sala = localStorage.getItem("sala");      
       this.usuario = JSON.stringify(localStorage.getItem('usuario'));
       this.email = localStorage.getItem("email");    
-      this.obtenerFotosMias();      
+      this.obtenerFotos();      
     }
 
   ngOnInit() {
-    this.obtenerFotosMias();     
+    this.obtenerFotos();     
   }
 
-  obtenerFotosMias() {   
-    console.log("obtener fotos mias")
-     this.obtenerFotosFeas();
-     this.obtenerFotosLindas();  
-     for(let i=0;i<this.fotosFeas.length;i++){                 
-       if(this.fotosFeas[i].email === this.email) {          
-         this.fotosMias.push(this.fotosFeas[i]);
-       } 
-     }  
-     for(let i=0;i<this.fotosLindas.length;i++){              
-       if(this.fotosLindas[i].email === this.email) {     
-         this.fotosMias.push(this.fotosLindas[i]);
-       } 
-     }     
+  obtenerFotos() {      
+     this.obtenerFotosMias();
+    //  for(let i=0;i<this.fotosLista.length;i++){                 
+    //    if(this.fotosLista[i].email === this.email) {          
+    //      this.fotosMias.push(this.fotosLista[i]);
+    //    } 
+    //  }  
+    
   } 
 
-  obtenerFotosFeas() {
-    this.data.getListaNoMeGusta('nomegusta').subscribe(lista => {
-        this.fotosFeas=lista;      
+  obtenerFotosMias() {
+ 
+    this.fotosLista=new Array();
+    this.fotosMias=new Array();
+    this.data.getListaMisFotos("misfotos").subscribe(lista => {
+        this.fotosLista=lista; 
+        for(let i=0;i<lista.length;i++){                 
+          if(lista[i].email === this.email) {  
+            console.log("en el if", lista[i].email, "mail:",this.email)        
+            this.fotosMias.push(lista[i]);
+          } 
+        }
+        console.log(lista);
+        console.log("mias", this.fotosMias);
+        this.fotoActual=lista[this.posicion];
+        console.log(this.fotoActual);
     });     
   } 
-  
-  obtenerFotosLindas() {
-    this.data.getListaMeGusta('megusta').subscribe(lista => {
-        this.fotosLindas=lista;      
-      });      
-  } 
+  siguiente() {
+    console.log("posicion: ",this.posicion);
+    this.posicion= this.posicion+1;
+    console.log("pocision +1:",this.posicion);
+    if (this.posicion<=this.fotosMias.length-1 && this.posicion>=0){      
+      this.obtenerFotosMias();
+    }    
+  }
 
+  anterior() {
+    console.log("posicion: ",this.posicion);
+    this.posicion= this.posicion-1;
+    console.log("pocision -1:",this.posicion);
+    if (this.posicion<=this.fotosMias.length-1 && this.posicion>=0){      
+      this.obtenerFotosMias();
+    }       
+  }
 
 
   irAInicio(){  
