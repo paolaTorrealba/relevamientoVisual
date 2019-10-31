@@ -2,6 +2,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/servicios/auth.service';
 import * as firebase from "firebase";
+import { Subscription } from 'rxjs';
+import { DeviceMotionAccelerometerOptions, DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device-motion/ngx';
 
 @Component({
   selector: 'app-mis-fotos',
@@ -13,18 +15,30 @@ export class MisFotosComponent implements OnInit {
   mostrar: boolean;
   tipo_cosas: boolean;
 
+   // agrego movimiento
+   x:string;
+   y:string;
+   z:string;
+   seMovio: any;
+   timeStamp:string;
+   off=true;
+   on=false;  
+   public posicion=0;
+   id: Subscription;
+   //  fin movimiento
+
   public firebase = firebase;
   public usuario;
   public sala;
-  public fotosMias= new Array();
-  public fotosFeas= new Array();
+  public fotosMias= new Array(); 
   public fotosLista= new Array();
   public fotoActual;
-  public posicion=0;
+
   public email:string;
   spinner: boolean = true;
 
-  constructor(public router: Router,
+  constructor(public deviceMotion: DeviceMotion,
+    public router: Router,
     private  data:  AuthService) {  
 
       this.sala = localStorage.getItem("sala");      
@@ -37,14 +51,44 @@ export class MisFotosComponent implements OnInit {
     this.obtenerFotos();     
   }
 
+  // MOVIMIENTO
+  start(){
+    this.off=false;
+    this.on=true;         
+    this.seMovio=false;
+    var option: DeviceMotionAccelerometerOptions = {frequency: 1500 };
+    this.id= this.deviceMotion.watchAcceleration(option).subscribe((result: DeviceMotionAccelerationData) =>
+    {
+        this.x= "" + result.x;
+        this.y= "" + result.y;
+        this.z= "" + result.z;
+        this.timeStamp= ""+result.timestamp;
+
+         //lateral izquierdo x=9
+         if (result.x>2 ){
+          this.siguiente();               
+        }            
+        //lateral derecho x=-9
+        if (result.x<-2){
+              this.anterior();           
+        }     
+          //vertical
+        if (result.y>6 ){
+              this.inicio();     
+        }   
+        
+    });    
+  } 
+// FIN MOVIMIENTO
+
+  inicio(){     
+    this.posicion= 0;      
+    if (this.posicion<=this.fotosMias.length-1 && this.posicion>=0){      
+      this.obtenerFotosMias();
+    }    
+  }
   obtenerFotos() {      
-     this.obtenerFotosMias();
-    //  for(let i=0;i<this.fotosLista.length;i++){                 
-    //    if(this.fotosLista[i].email === this.email) {          
-    //      this.fotosMias.push(this.fotosLista[i]);
-    //    } 
-    //  }  
-    
+     this.obtenerFotosMias();    
   } 
 
   obtenerFotosMias() {
@@ -65,6 +109,7 @@ export class MisFotosComponent implements OnInit {
         console.log(this.fotoActual);
     });     
   } 
+  
   siguiente() {
     console.log("posicion: ",this.posicion);
     this.posicion= this.posicion+1;

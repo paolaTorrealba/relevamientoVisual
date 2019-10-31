@@ -27,8 +27,10 @@
         <p>{{this.fotoActual.email}} - Votos: {{this.fotoActual.votos}} - Nro: {{this.fotoActual.nrofoto}}</p>
     </ion-card-content>
   </ion-card>
-  <div>   
-    <button class="btn-list-ok" (click)="votar(this.fotoActual)">voto +1</button>  
+  <div style="margin-top: -20px;">   
+      <button class="btn-list-ant" (click)="anterior(this.fotoActual)"><ion-icon name="arrow-dropleft-circle"></ion-icon></button> 
+      <button class="btn-list-sig" (click)="siguiente(this.fotoActual)"><ion-icon name="arrow-dropright-circle"></ion-icon></button> 
+      <button class="btn-list-ok" (click)="votar(this.fotoActual)">voto +1</button>  
   </div>   
   </div>
 

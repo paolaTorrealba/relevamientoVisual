@@ -18,6 +18,9 @@
 </ion-fab>
 <div class="grid-container">
 <ion-card class="micard">
+  <!-- <p>x:{{this.x}}</p>
+  <p>y:{{this.y}}</p>
+  <p>z:{{this.z}}</p> -->
   <button  style="background-color: transparent;
   margin-top: inherit;" >
        <img style="height: 380px;" src={{this.fotoActual.img}}>
@@ -26,9 +29,10 @@
   <p>{{this.fotoActual.email}} - Votos: {{this.fotoActual.votos}} - Nro: {{this.fotoActual.nrofoto}}</p>
 </ion-card-content>
 </ion-card>
-<div>   
-  <button class="btn-list-ok" (click)="votar(this.fotoActual)">voto +1</button>  
-  <!-- <button class="btn-list-ok" (click)="siguiente(this.fotoActual)"><ion-icon md="md-checkmark-circle"></ion-icon></button>   -->
+<div style="margin-top: -20px;">
+    <button class="btn-list-ant" (click)="anterior(this.fotoActual)"><ion-icon name="arrow-dropleft-circle"></ion-icon></button> 
+    <button class="btn-list-sig" (click)="siguiente(this.fotoActual)"><ion-icon name="arrow-dropright-circle"></ion-icon></button> 
+    <button class="btn-list-ok" (click)="votar(this.fotoActual)">voto +1</button>  
 </div>   
 </div>
 

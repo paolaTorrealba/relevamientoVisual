@@ -110,8 +110,6 @@ export class CosasLindasComponent implements OnInit {
 
 
 
-
-
   obtenerFotosLindas() {
      this.data.getListaMeGusta("megustas").subscribe(lista => {
         this.fotosLindas=lista;      

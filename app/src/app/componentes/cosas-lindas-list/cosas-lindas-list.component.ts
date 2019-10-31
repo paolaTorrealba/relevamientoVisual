@@ -81,27 +81,26 @@ export class CosasLindasListComponent implements OnInit {
           this.off=false;
           this.on=true;         
           this.seMovio=false;
-          var option: DeviceMotionAccelerometerOptions = {frequency: 1000 };
+          var option: DeviceMotionAccelerometerOptions = {frequency: 1500 };
           this.id= this.deviceMotion.watchAcceleration(option).subscribe((result: DeviceMotionAccelerationData) =>
           {
               this.x= "" + result.x;
               this.y= "" + result.y;
               this.z= "" + result.z;
-              this.timeStamp= ""+result.timestamp;
-    
+              this.timeStamp= ""+result.timestamp;   
+              
               //lateral izquierdo x=9
-              if (result.x>8.6  && result.x<9.9 ){
+              if (result.x>2 ){
                    this.siguiente();               
               }            
               //lateral derecho x=-9
-              if (result.x<-8.5 && result.x>-9.5){
+              if (result.x<-2){
                    this.anterior();           
               }     
                //vertical
-          if (result.y<9.5 && result.y>8.5){
-              this.inicio();            
-    
-          }   
+              if (result.y>6 ){
+                   this.inicio();     
+              }   
               
           });    
         } 
@@ -133,6 +132,7 @@ export class CosasLindasListComponent implements OnInit {
 
     votar(imgRef){
       console.log("los votos",this.fotoActual.votosusuario[0]  )
+      console.log(this.fotoActual.votosusuario.lenght);
       for(let i=0;i<this.fotoActual.votosusuario.length;i++){
         if(this.fotoActual.votosusuario[i] === this.email) {
           console.log("el usuario ya voto la foto");  

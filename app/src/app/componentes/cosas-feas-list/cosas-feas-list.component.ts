@@ -72,7 +72,7 @@ export class CosasFeasListComponent implements OnInit {
     this.off=false;
     this.on=true;         
     this.seMovio=false;
-    var option: DeviceMotionAccelerometerOptions = {frequency: 1000 };
+    var option: DeviceMotionAccelerometerOptions = {frequency: 1500 };
     this.id= this.deviceMotion.watchAcceleration(option).subscribe((result: DeviceMotionAccelerationData) =>
     {
         this.x= "" + result.x;
@@ -80,18 +80,18 @@ export class CosasFeasListComponent implements OnInit {
         this.z= "" + result.z;
         this.timeStamp= ""+result.timestamp;
 
-        //lateral izquierdo x=9
-        if (result.x>8.6  && result.x<9.9 ){
-             this.siguiente();               
+         //lateral izquierdo x=9
+         if (result.x>2 ){
+          this.siguiente();               
         }            
         //lateral derecho x=-9
-        if (result.x<-8.5 && result.x>-9.5){
-             this.anterior();           
-        }      
-        if (result.y<9.5 && result.y>8.5){
-          this.inicio();            
-
-      }  
+        if (result.x<-2){
+              this.anterior();           
+        }     
+          //vertical
+        if (result.y>6 ){
+              this.inicio();     
+        }   
         
     });    
   } 
