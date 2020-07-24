@@ -1,0 +1,17 @@
+<ion-content>
+        <ion-list-header color="primary"></ion-list-header>
+        <div class="chart">
+          <canvas #chart (click)="showImage($event)"></canvas>
+        </div>
+      
+        <ion-card class="welcome-card" *ngIf="imageObject">
+          <ion-card-header>
+            <ion-card-title>
+              <span>Subida por: {{imageObject.usuario}} - Fecha: {{imageObject.date | date:'dd-MM-yyyy'}}</span>
+            </ion-card-title>
+            <ion-card-content>
+              <img src={{imageObject.url}}>
+            </ion-card-content>
+          </ion-card-header>
+        </ion-card>
+      </ion-content>

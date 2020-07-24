@@ -66,6 +66,7 @@ export class AuthProvider {
     return this.db.collection('nomegustas').add(data);
   }
 
+ 
   guardarFotoMeGusta(data) {
     return this.db.collection('megustas').add(data);
   }
