@@ -36,6 +36,7 @@ export class TabBarComponent implements OnInit {
       this.router.navigateByUrl(this.urlChart + this.general.type);
     }
     else if(option == "list"){
+      console.log(this.urlList + this.general.type)
       this.router.navigateByUrl(this.urlList + this.general.type);
     }
   }

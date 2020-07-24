@@ -13,7 +13,7 @@ export class ListaImagenesService {
 
   constructor(private db: AngularFirestore) { }
   getListaImagenesFeas(){
-    return this.db.collection('nomegustas').snapshotChanges().pipe(map(imagenes =>{
+    return this.db.collection('feas').snapshotChanges().pipe(map(imagenes =>{
       return imagenes.map(i => {
         const data = i.payload.doc.data() as lista;
         data.id = i.payload.doc.id;
@@ -23,7 +23,7 @@ export class ListaImagenesService {
   }
 
   getListaImagenesLindas(){
-    return this.db.collection('megustas').snapshotChanges().pipe(map(imagenes =>{
+    return this.db.collection('lindas').snapshotChanges().pipe(map(imagenes =>{
       return imagenes.map(i => {
         const data = i.payload.doc.data() as lista;
         data.id = i.payload.doc.id;

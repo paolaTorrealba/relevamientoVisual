@@ -4,4 +4,5 @@ export class Usuario {
 	public clave: string;
 	public perfil: string;
 	public sexo: string;
+	public nombre: string;
 }

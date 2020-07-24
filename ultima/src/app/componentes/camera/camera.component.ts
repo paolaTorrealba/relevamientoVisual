@@ -20,7 +20,12 @@ export class CameraComponent implements OnInit {
   
   takePhoto(){
     console.log("takePhoto ", this.type)
-    this.cameraService.takePhoto(this.type);
+    if (this.type=='lindas'){
+       this.cameraService.takePhotoLinda(this.type);
+    }
+    else {
+       this.cameraService.takePhotoFea(this.type);
+    }   
   }
 
 }
